@@ -11,77 +11,77 @@ class Usuario {
         this.points = points;
     }
 
-    get nombre(){
-        return this.nom;
-    }
+    // get nombre(){
+    //     return this.nom;
+    // }
 
-    set nombre(nom){
-         this.nom = nom;
-    }
+    // set nombre(nom){
+    //      this.nom = nom;
+    // }
 
-    get apellido(){
-        return this.ape;
-    }
+    // get apellido(){
+    //     return this.ape;
+    // }
 
-    set apellido(ape){
-        this.ape = ape;
-    }
+    // set apellido(ape){
+    //     this.ape = ape;
+    // }
 
-    get documentoIden(){
-        return this.dni;
-    }
+    // get documentoIden(){
+    //     return this.dni;
+    // }
 
-    set documentoIden(dni){
-        this.dni = dni;
-    }
+    // set documentoIden(dni){
+    //     this.dni = dni;
+    // }
 
-    get fechaNacimiento(){
-        return this.fechaNac;
-    }
+    // get fechaNacimiento(){
+    //     return this.fechaNac;
+    // }
 
-    set fechaNacimiento(fechaNac){
-        this.fechaNac = fechaNac;
-    }
+    // set fechaNacimiento(fechaNac){
+    //     this.fechaNac = fechaNac;
+    // }
 
-    get correo(){
-        return this.email;
-    }
+    // get correo(){
+    //     return this.email;
+    // }
 
-    set correo(email){
-        this.email = email;
-    }
+    // set correo(email){
+    //     this.email = email;
+    // }
 
-    get telefono(){
-        return this.tel;
-    }
+    // get telefono(){
+    //     return this.tel;
+    // }
 
-    set telefono(tel){
-        this.tel = tel;
-    }
+    // set telefono(tel){
+    //     this.tel = tel;
+    // }
 
-    get extTelefono(){
-        return this.tel;
-    }
+    // get extTelefono(){
+    //     return this.tel;
+    // }
 
-    set extTelefono(exTtel){
-        this.exTtel = exTtel;
-    }
+    // set extTelefono(exTtel){
+    //     this.exTtel = exTtel;
+    // }
 
-    get password(){
-        return this.tel;
-    }
+    // get password(){
+    //     return this.tel;
+    // }
 
-    set password(pass){
-        this.pass = pass;
-    }
+    // set password(pass){
+    //     this.pass = pass;
+    // }
 
-    get dPoints(){
-        return this.points;
-    }
+    // get dPoints(){
+    //     return this.points;
+    // }
 
-    set dPoints(points){
-        this.points = points;
-    }
+    // set dPoints(points){
+    //     this.points = points;
+    // }
 
     comprobarPassword(password){
         return this.pass==password;  
@@ -194,7 +194,7 @@ class Usuarios{
         return position
     }    
     
-    //Modifica los datos personales del suario
+    //Modifica los datos personales del usuario
     modificarDatosPersonales(usuario, posicion){
         this.usuarios[posicion].nom = usuario.nom;
         this.usuarios[posicion].ape = usuario.ape;
@@ -224,21 +224,21 @@ class Sesion{
         this.usuario = usuario;
     }
 
-    get estadoSesion() {
-        return this.estado
-    }
+    // get estadoSesion() {
+    //     return this.estado
+    // }
 
-    set estadoSesion(estado) {
-        this.estado = estado;
-    }
+    // set estadoSesion(estado) {
+    //     this.estado = estado;
+    // }
 
-    get usuarioSesion() {
-        return this.usuario;
-    }
+    // get usuarioSesion() {
+    //     return this.usuario;
+    // }
 
-    set usuarioSesion(usuario) {
-        this.usuario = usuario;
-    }
+    // set usuarioSesion(usuario) {
+    //     this.usuario = usuario;
+    // }
 
     cerrarSesion(){
         this.estado = "close";
@@ -252,6 +252,20 @@ class Sesion{
     fromJsontoSesion(json){
         return Object.assign(this, json);
    }
+}
+
+//Clase vuelo
+class Vuelo {
+    constructor(id, origen, destino, fecha, hora, horallegada, asientosLibres, precio) {
+        this.id = id;
+        this.origen = origen;
+        this.destino = destino;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.horallegada = horallegada;
+        this.asientosLibres = asientosLibres;
+        this.precio = precio;
+    }
 }
 
 //Muestra un mensaje de error por el console.log
