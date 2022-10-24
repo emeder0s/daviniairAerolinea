@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(98, 98, 149) ;
+    padding: 5%;
+}
+.grid {
+    --bs-columns: 3;
+    --bs-rows: 3;
+}
+h1 {
+    color: #fff;
+}
+/* .col, .row {
+    background-color: #fff;
+} */
+.card {
+    margin-top: 15px;
+    padding: 1%;
+}
+.right {
+    text-align: right;
+}
+button {
+    margin: 1% 0;
+}
+  

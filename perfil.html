@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <nav></nav>
+    <section>
+        <div class="tab">
+            <button class="tablinks" onclick="openContent(event, 'info-personal')" id="defaultOpen">Información personal</button>
+            <button class="tablinks" onclick="openContent(event, 'contraseña')">Cambiar contraseña</button>
+            <button class="tablinks" onclick="openContent(event, 'points')">Davinity points</button>
+            <button class="tablinks" onclick="openContent(event, 'pago')">Métodos de pago</button>
+            <button class="tablinks" onclick="openContent(event, 'historial')">Historial de compra</button>
+          </div>
+          
+          <div id="info-personal" class="tabcontent">
+            <h3>Información personal</h3>
+          </hr>
+            <button onclick="habilitarEdicion()">Editar datos</button>
+            <div id="info-personal-container" class="content-container">
+                <h5>Datos personales</h5>
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" type="text" class="info-personal-input"></input>
+                </div>
+                <div>
+                    <label for="apellido">Apellido</label>
+                    <input id="apellido" type="text" class="info-personal-input"></input>
+                </div>
+                <div>
+                    <label for="dni">DNI</label>
+                    <input id="dni" type="text" class="info-personal-input"></input>
+                </div>
+                <div>
+                    <label for="fechaNac">Fecha de nacimiento</label>
+                    <input id="fechaNac" type="date" class="info-personal-input"></input>
+                </div>
+
+                <h5>Datos de contacto</h5>
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" class="info-personal-input"></input>
+                </div>
+                <div>
+                    <label for="telefono">Telefono</label>
+                    <select id="extension" class="info-personal-input">
+                        <option>+34</option>
+                        <option>+33</option>
+                        <option>+44</option>
+                    </select>
+                    <input id="telefono" class="info-personal-input"></input>
+                </div>
+            </div>
+            <button onclick="guardarDatos()">Guardar</button>
+        </div>
+        <div id="contraseña" class="tabcontent">
+            <h3>Cambiar contraseña</h3>
+            <div>
+                <label for="nuevaPassword">Nueva contraseña</label>
+                <input id="nuevaPassword" class="pass-input"></input>
+            </div>
+            <div>
+                <label for="password">Contraseña actual</label>
+                <input id="password" class="pass-input"></input>
+            </div>
+            <button onclick="guardarContraseña()">Guardar</button>
+        </div>
+          <div id="points" class="tabcontent">
+            <h3>Davinity points</h3>
+            <div class="chart-container" style="position: relative; width:40%">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+            <div id="mostrarPoints"></div>
+          </div>
+
+          <div id="pago" class="tabcontent">
+            <h3>Métodos de pago</h3>
+          </div>
+
+          <div id="historial" class="tabcontent">
+            <h3>Historial de compra</h3>
+          </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="nav.js"></script>
+    <script src="clases.js"></script>
+    <script src="perfil.js"></script>
+    <script src="clases.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>   
+</body>
+</html>

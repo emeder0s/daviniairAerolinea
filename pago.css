@@ -1,0 +1,147 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #2e2e5c;
+}
+
+#continuar {
+    font-family: system-ui;
+    font-size: large;
+    color: #2e2e5c;
+    font-weight: 500;
+    padding: 7px;
+    background-color: aliceblue;
+    border: 0.5px solid white;
+    box-shadow: 1px 1px 6px black;
+}
+
+#continuar:hover {
+    background-color: #4e4e79;
+    color: aliceblue;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+#wrapper {
+    height: 370px;
+    width: 700px;
+    background: #fff;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin: 3em auto 94px auto;
+    overflow: hidden;
+    box-shadow: 0px 2px 25px #000;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.row:nth-of-type(1) .col-xs-5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #e6e6e6;
+    /*   border:solid 1px transparent; */
+    border-radius: 4px;
+    margin: 1em 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.row:nth-of-type(1) .col-xs-5 #cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.row:nth-of-type(1) .col-xs-5 #cards img {
+    width: 100px;
+    height: 100px;
+}
+
+.row:nth-of-type(2) .col-xs-5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-basis: 45%;
+}
+
+.row:nth-of-type(2) .col-xs-5 input {
+    border: 2px solid lightgrey;
+    height: 35px;
+    padding-left: 10px;
+}
+
+.row .col-xs-5 input:focus,
+.row:nth-of-type(3) .col-xs-2 input:focus {
+    border-color: green;
+    outline: 0;
+}
+
+label {
+    position: relative;
+}
+
+.fa {
+    position: absolute;
+    right: 25px;
+    bottom: 10px;
+}
+
+.row-three {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row:nth-of-type(3) .col-xs-2 {
+    flex-basis: 50%;
+    margin: 10px;
+}
+
+.row:nth-of-type(3) .col-xs-5 {
+    flex-basis: 40%;
+    align-items: baseline;
+}
+
+.row:nth-of-type(3) .col-xs-2 input {
+    height: 35px;
+    border: 2px solid lightgrey;
+    padding-left: 10px;
+}
+
+.row:nth-of-type(3) .col-xs-5 .small {
+    font-size: .70em;
+}
+
+.col-xs-5.highlight {
+    border: solid 1px blue;
+}
+
+#precioTotal {
+    font-family: system-ui;
+    font-size: large;
+    color: white;
+    font-weight: 500;
+}
+
+#precioBoton {
+    display: flex;
+    justify-content: space-around;
+    padding: 1%;
+    background-color: #0000004f;
+    align-items: center;
+    position: relative;
+    bottom: 0;
+}

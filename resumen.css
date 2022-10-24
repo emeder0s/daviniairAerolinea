@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(46, 46, 92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fondoHome {
+    background-image: url(./img/avion2.png);
+    opacity: 0.8;
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    z-index: -1;
+    background-size: cover;
+}
+
+.cabeceraresumen {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: xx-large;
+    background-color: white;
+    font-family: system-ui;
+}
+
+.resumen{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: space-around;
+    border: solid;
+    width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px;
+    align-items: center;
+    margin-top: 40px;
+    font-family: system-ui;
+    font-weight: 500;
+    color: rgb(46, 46, 92);
+    font-family: system-ui;
+    
+    
+}
+
+
+.gracias{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size:x-large;
+    background-color: white;
+    font-family: system-ui;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    width: 50%;
+}
+
+.resumenpasajeros{
+    box-shadow: 1px 1px 5px;
+    width: 700px;
+    text-align: center;
+    border: 1px solid grey;
+}
+
+.resumenvuelo{
+    box-shadow: 1px 1px 5px;
+    width: 700px;
+    text-align: center;
+    border: 1px solid grey;
+}
+
+.resumenprecio{
+    box-shadow: 1px 1px 5px;
+    width: 700px;
+    text-align: center;
+    border: 1px solid grey;
+
+}

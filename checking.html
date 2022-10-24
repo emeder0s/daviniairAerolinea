@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Historial de compras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="checking.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Check in</h1>
+    <section>
+        <div class="card muestra">
+            <div class="row g-3 text-center">
+            <h2>Confirmación de datos</h2>
+            <p>Por favor revise sus datos personales para poder confirmar su vuelo</p>
+        </div>
+            <form action="">
+                <div class="row g-3">
+                    <div class="col ms-md-auto">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" name="Nombre" id="nombre" placeholder=""
+                            class="form-control form-control-lg">
+                    </div>
+                    <div class="col ms-md-auto">
+                        <label for="apellidos" class="form-label">Apellidos</label>
+                        <input type="text" name="Apellidos" id="nombre" placeholder=""
+                            class="form-control form-control-lg">
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <label for="Documento de identidad" class="form-label">Documento de identidad</label>
+                    <input type="text" name="Documento de Identidad" placeholder=""
+                        class="form-control form-control-lg">
+                </div>
+                <div class="row g-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" name="email" id="email" class="form-control form-control-lg">
+                </div>
+                <div class="row g-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" name="telefono" id="telefono" class="form-control form-control-lg">
+                </div>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-secondary">Confirmar datos</button>
+                      </div>
+                </div>
+            </form>
+        </div>
+        <div class="card oculto">
+            <h2>Elige tu asiento</h2>
+            <p>Con Daviniair puedes elegir tu asiento de manera totalmente gratuita</p>
+            <div class="row">
+                <div class="col">
+                    <h3>Clase Turista</h3>
+                    <form action="">
+                        <input type="radio" name="tourist" value="6A"><label for="1">6A</label>
+                        <input type="radio" name="tourist" value="5A"><label for="2">5A</label>
+                        <input type="radio" name="tourist" value="4A"><label for="3">4A</label>
+                        <input type="radio" name="tourist" value="3A"><label for="1">3A</label>
+                        <input type="radio" name="tourist" value="2A"><label for="1">2A</label>
+                        <input type="radio" name="tourist" value="1A"><label for="1">1A</label><br>
+                        <input type="radio" name="tourist" value="6B"><label for="1">6B</label>
+                        <input type="radio" name="tourist" value="5B"><label for="1">5B</label>
+                        <input type="radio" name="tourist" value="4B"><label for="1">4B</label>
+                        <input type="radio" name="tourist" value="3B"><label for="1">3B</label>
+                        <input type="radio" name="tourist" value="2B"><label for="1">2B</label>
+                        <input type="radio" name="tourist" value="1B"><label for="1">1B</label><br><br>
+                        <input type="radio" name="tourist" value="6C"><label for="1">6C</label>
+                        <input type="radio" name="tourist" value="5C"><label for="1">5C</label>
+                        <input type="radio" name="tourist" value="4C"><label for="1">4C</label>
+                        <input type="radio" name="tourist" value="3C"><label for="1">3C</label>
+                        <input type="radio" name="tourist" value="2C"><label for="1">2C</label>
+                        <input type="radio" name="tourist" value="1C"><label for="1">1C</label><br>
+                        <input type="radio" name="tourist" value="6D"><label for="1">6D</label>
+                        <input type="radio" name="tourist" value="5D"><label for="1">5D</label>
+                        <input type="radio" name="tourist" value="4D"><label for="1">4D</label>
+                        <input type="radio" name="tourist" value="3D"><label for="1">3D</label>
+                        <input type="radio" name="tourist" value="2D"><label for="1">2D</label>
+                        <input type="radio" name="tourist" value="1D"><label for="01">1D</label>
+                        <input type="radio" name="tourist" value="00"><label for="00">00</label>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-secondary" onclick="guardarAsiento()">Confirmar asiento</button>
+                              </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <h3>Davinity class</h3>
+                    <form action="">
+                        <input type="radio" name="selec" id="">
+                        <input type="radio" name="selec" id="">
+                        <input type="radio" name="selec" id=""><br>
+                        <input type="radio" name="selec" id="">
+                        <input type="radio" name="selec" id="">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-secondary">Confirmar asiento</button>
+                              </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <div class="card oculto">
+        </div>
+        <div class="card oculto">
+        </div>
+    </section>
+    <section>
+        <div class="card oculto">
+        </div>
+        <div class="card oculto">
+        </div>
+    </section>
+    <div class="card oculto">
+    </div>
+    <button class="btn btn-default btn-secondary" type="submit" role="button" onclick="muestra()">Continuar</button>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
