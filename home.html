@@ -6,28 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="js/nav.js"></script>
     <link href="style/home.css" rel="stylesheet">
 </head>
 
 <body>
     <nav></nav>
+    <!-- <div id="proceso-compra" style="background-color:aqua;width: 100%;position:absolute;">
+        <ul>
+            <li>1. Selecciona vuelos</li>
+            <li>2. Datos de pasajeros</li>
+        </ul>
+    </div> -->
     <div id="fondoHome"></div>
     <div class="contenedor">
-        <div class="busqueda">
-            <input type="text" placeholder="Origen" value="Madrid">
-            <select id="destion">
-                <option>Edimburgo</option>
-                <option>Ciudad de Mexico</option>
-                <option>París</option>
-            </select>
-            <label for=""><input type="number" class="pasajeros" id="pasajeros" min="1" max="10" placeholder="Nº de pasajeros"></label>
-            <label><input type="date" class="fecha" id="fecha"></label>
-            
-            <button id="buscar" onclick="encogerBusqueda(); buscarVuelos();">Buscar vuelos</button>
+        <div id="buscaVuelos"class="busqueda">
+            <div class="campos-busqueda">
+                <div class="form-group">
+                    <label for="origen">Origen</label>
+                    <input id="origen" class="form-control form-control-sm" type="text" value="Madrid">
+                </div>
+                <div class="form-group">
+                    <label for="destino">Destino</label>
+                    <select id="destion" class="form-control form-control-sm">
+                        <option>Edimburgo</option>
+                        <option>Ciudad de Mexico</option>
+                        <option>París</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pasajeros">Nº Pasajeros</label>
+                    <input type="number" class="form-control form-control-sm pasajeros" id="pasajeros" min="1" max="10" placeholder="0"></label>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" class="fecha form-control form-control-sm" id="fecha">
+                </div>
+            </div>
+            <div>
+                <button id="buscar" type="button" class="btn btn-primary" onclick="encogerBusqueda(); buscarVuelos();">Buscar vuelos</button>
+            </div>
         </div>
     </div>
+<!-- Modal -->
+<div class="modal fade" id="iniSesionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Inicia sesión con tu cuenta Daviniair</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="email-input">Email</label>
+                <input type="email" class="form-control" id="email-input" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password-input">Password</label>
+                <input type="password" class="form-control" id="password-input" aria-describedby="passwordHelp" placeholder="Enter password">
+                <small id="passwordHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+            </div>
+          <button type="button" class="btn btn-primary" onclick="iniciarSesion()">Iniciar Sesion</button>
+        </div>
+        <div class="modal-footer">
+          <p>¿Todavía no te has dado de alta?</p>
+          <a href="registro.html">Regístrate</p></a>
+        </div>
+      </div>
+    </div>
+  </div>
     <script src="js/clases.js"></script>
+    <script src="js/inicializar.js"></script>
     <script src="js/home.js"></script>
     <script src="js/reserva.js"></script>
     <script src="js/vuelo.js"></script>

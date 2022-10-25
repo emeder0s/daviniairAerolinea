@@ -1,3 +1,4 @@
+// Clas Usuario
 class Usuario {
     constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points){
         this.nom = nom;
@@ -10,88 +11,19 @@ class Usuario {
         this.pass = pass;
         this.points = points;
     }
-
-    // get nombre(){
-    //     return this.nom;
-    // }
-
-    // set nombre(nom){
-    //      this.nom = nom;
-    // }
-
-    // get apellido(){
-    //     return this.ape;
-    // }
-
-    // set apellido(ape){
-    //     this.ape = ape;
-    // }
-
-    // get documentoIden(){
-    //     return this.dni;
-    // }
-
-    // set documentoIden(dni){
-    //     this.dni = dni;
-    // }
-
-    // get fechaNacimiento(){
-    //     return this.fechaNac;
-    // }
-
-    // set fechaNacimiento(fechaNac){
-    //     this.fechaNac = fechaNac;
-    // }
-
-    // get correo(){
-    //     return this.email;
-    // }
-
-    // set correo(email){
-    //     this.email = email;
-    // }
-
-    // get telefono(){
-    //     return this.tel;
-    // }
-
-    // set telefono(tel){
-    //     this.tel = tel;
-    // }
-
-    // get extTelefono(){
-    //     return this.tel;
-    // }
-
-    // set extTelefono(exTtel){
-    //     this.exTtel = exTtel;
-    // }
-
-    // get password(){
-    //     return this.tel;
-    // }
-
-    // set password(pass){
-    //     this.pass = pass;
-    // }
-
-    // get dPoints(){
-    //     return this.points;
-    // }
-
-    // set dPoints(points){
-    //     this.points = points;
-    // }
-
+    
+    //Comprueba si la contraseña del usuario es la contraseña guardada para el mismo
     comprobarPassword(password){
         return this.pass==password;  
     }
 
-   fromJsonToUsuario(json){
-        return Object.assign(this, json);
-   }
+    //Se le pasa un objeto JSON con los atributos del Usuario y lo convierte (y devuelve) en un objeto de la clase Usuario
+    fromJsonToUsuario(json){
+         return Object.assign(this, json);
+    }
 
-   devolverAtributo(atributo){
+    //Devuelve el valor del atributo que se le pida
+    devolverAtributo(atributo){
         var valor = "";
         switch (atributo) {
             case "nombre":
@@ -121,9 +53,10 @@ class Usuario {
         }
 
         return valor;
-   }
-
-   guardarAtributo(atributo,valor){
+    }
+    
+    //Guarda el valor del atributo dado
+    guardarAtributo(atributo,valor){
         switch (atributo) {
             case "nombre":
                 this.nom = valor;
@@ -152,12 +85,13 @@ class Usuario {
     }
 }
 
+//Clase Usuarios
 class Usuarios{
     constructor(){
         this.usuarios = [];
     }
     
-    //comprueba si el usuario ya existe (se comprueba por el correo)
+    //Comprueba si el usuario ya existe (se comprueba por el correo)
     existeUsuario(email) {
         var existe = false;
         var key = 0;
@@ -174,12 +108,12 @@ class Usuarios{
         return usuario
     }
     
-    //añade un usuario
+    //Añade un usuario
     añadirUsuario(usuario){
         this.usuarios.push(usuario);
     }
 
-    //devuelva la posicion donde está el usuario
+    //Devuelva la posicion donde está el usuario
     buscarUsuario(usuario){
         var existe = false;
         var key = 0;
@@ -205,50 +139,40 @@ class Usuarios{
         this.usuarios[posicion].tel = usuario.tel;
     }
 
+    //Modifica el password de un usuario --> ESTA DEBERÍA IR EN LA CLASE USUARIO
     modificarPassword(usuario, posicion){
         this.usuarios[posicion].pass = usuario.pass;
     }
 
+    //Guarda los usuarios en el localStorage
     guardarUsuarios(){
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios))
     }
 
+    //Se le pasa un objeto JSON con los atributos de la clase y lo convierte en un objeto de la clase Usuarios
     fromJsonToUsuarios(json){
         return Object.assign(this, json);
    }
 }
 
+//Clase Sesion
 class Sesion{
     constructor(estado, usuario){
         this.estado = estado;
         this.usuario = usuario;
     }
-
-    // get estadoSesion() {
-    //     return this.estado
-    // }
-
-    // set estadoSesion(estado) {
-    //     this.estado = estado;
-    // }
-
-    // get usuarioSesion() {
-    //     return this.usuario;
-    // }
-
-    // set usuarioSesion(usuario) {
-    //     this.usuario = usuario;
-    // }
-
+    
+    //Cierra la sesión
     cerrarSesion(){
         this.estado = "close";
         this.usuario = null;
     }
-
+    
+    //Guarda la sesión en el localStorage
     guardarSesion(){
         localStorage.setItem("sesion",JSON.stringify(this))
     }
-
+    //Se le pasa un objeto JSON con los atributos de la clase y lo convierte en un objeto de la clase Sesion
     fromJsontoSesion(json){
         return Object.assign(this, json);
    }
@@ -273,6 +197,7 @@ function mostrarMensaje(mensaje){
     console.log(mensaje);
 }
 
+//Devuelve la sesión guarda en el localStorage como objeto Sesion
 function sesionFromLocalStorage(){
     var sesionJSON = JSON.parse(localStorage.getItem("sesion"));
     var sesion = new Sesion();
@@ -281,6 +206,7 @@ function sesionFromLocalStorage(){
     return sesion;
 }
 
+//Devuelve los usuarios guardos en el localStorage como objeto Usuarios
 function usuariosFromLocalStorage(){
     var usuariosJSON = JSON.parse(localStorage.getItem("usuarios"));
     var usuarios = new Usuarios();
@@ -289,6 +215,7 @@ function usuariosFromLocalStorage(){
     return usuarios;
 }
 
+//Devuelve el usuario guardo en la sesion del localStorage como objeto Usuario
 function usuarioFromSesion(sesion){
     var usuarioJSON = sesion.usuario;
     var usuario = new Usuario();

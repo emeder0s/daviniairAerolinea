@@ -5,17 +5,20 @@
 
 
 body {
-    background-color: rgb(46, 46, 92);
+    /* background-color: rgb(46, 46, 92); */
+    font-family: 'Open Sans', sans-serif;
+    font-size: small;
 }
 
 #fondoHome {
-    background-image: url(./img/avion2.png);
-    opacity: 0.8;
+    background-image: url(/img/avion2.png);
+    opacity: 0.5;
     width: 100%;
     height: 70%;
     position: absolute;
     z-index: -1;
     background-size: cover;
+    box-shadow: inset 0px 0px 8px #000;
 }
 
 .contenedor {
@@ -26,61 +29,39 @@ body {
 
 .busqueda {
     background-color: white;
-    width: 55%;
-    margin-top: 13%;
+    width: 90%;
+    margin-top: 8%;
     border: 1px solid grey;
     border-radius: 10px;
     height: fit-content;
-    padding: 2%;
+    padding: 1%;
     box-shadow: 1px 1px 5px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.busqueda input[type=text] {
-    width: 45%;
-    height: 34px;
-    font-size: large;
-    padding-left: 5px;
+.busqueda2{
+    width: 90%; 
+    margin-top: 1%; 
+    height: 48px; 
+    display: flex; 
+    justify-content: space-around;
 }
 
-select {
-    width: 45%;
-    height: 34px;
-    font-size: large;
-    padding-left: 5px;
+.campos-busqueda{
+    display: flex;
+    flex-direction: row;
 }
 
-.busqueda input[type=number] {
-    width: 150px;
-    height: 30px;
-    font-size: large;
-    padding-left: 5px;
-}
-
-.busqueda input[type=date] {
-    width: 150px;
-    height: 30px;
-    font-size: large;
-    padding-left: 5px;
+.campos-busqueda div {
+    width: 30%;
+    margin-right: 8px;
 }
 
 #buscar {
     width: 100%;
-    font-family: system-ui;
-    font-size: large;
-    color: white;
-    font-weight: 500;
-    background-color: #2e2e5c;
-    border: 0.5px solid white;
-    border-radius: 10px;
 }
-
-#buscar:hover {
-    background-color: #4e4e79;
-    color: white;
-}
-
 
 #vuelos{
     display: flex;
@@ -88,25 +69,30 @@ select {
     justify-content: center;
     margin-top: 50px;
     gap: 70px;
+    width: 100%;
 }
 
 .cajareserva{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 600px;
+    /* width: 600px; */
     height: 100px;
     text-align: center;
     align-items: center;
     background-color: white;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 1px 1px 5px;
+}
+
+.cajaprecio{
+    background-color: #00629c;
+    display:flex;
 }
 
 .cajareserva button{
     background-color: #2e2e5c;
     color: white;
-    font-family: system-ui;
     font-size: large;
     border: 0.5px solid white;
     width: 160px;
@@ -119,10 +105,49 @@ select {
 }
 
 div.busqueda.busqueda2 {
+    background-color: white;
     width: 90%;
+    margin-top: 8%;
+    border: 1px solid grey;
+    border-radius: 10px;
+    height: fit-content;
     margin-top: 1%;
-    height: fit-content !important; 
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
 }
 
+.modal-footer{
+    justify-content: center;
+}
+
+.modal-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #00629c;
+    border-color: #00629c;
+}
+
+#proceso-compra ul li {
+    display: inline;
+}
+
+#proceso-compra ul li hr{
+    border: 1px solid black;
+}
+
+.button-nueva-busqueda {
+    height: 22px;
+    line-height: 1px;
+}
+
+p.origen-destino {
+    font-size: 16px;
+}

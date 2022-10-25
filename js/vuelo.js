@@ -6,7 +6,7 @@ function buscarVuelos() {
     var vuelosEncontrados = datosVuelos.filter(vuelo => vuelo.destino == destinoBusqueda && vuelo.fecha == fechaBusqueda && pasajerosBusqueda <= vuelo.asientosLibres) //Hasta aquí tenemos la coincidencia de la búsqueda con la base de datos.
 
     if (vuelosEncontrados.length == 0) {
-        alert("No hay billetes")
+        //alert("No hay billetes")
     } else {
         pintarVuelos(vuelosEncontrados);
     }
@@ -21,20 +21,16 @@ function pintarVuelos(vuelosEncontrados) {
 
     vuelosEncontrados.forEach(vuelo => {
         //pinta los vuelos en un div concreto
-
         var div1 = document.createElement("div");
         var p = document.createElement("p")
 
-        p.appendChild(document.createTextNode(`Mad → ${destinoBusqueda} | ${vuelo.hora} -  ${vuelo.horallegada} | ${vuelo.precio}€`))
-        divVuelos.appendChild(div1)
-        div1.appendChild(p)
-        div1.setAttribute("id", "cajaVuelo")
-        div1.setAttribute("class", "cajareserva")
-        p.style.fontFamily = 'system-ui';
-        p.style.fontWeight = '500';
-        p.style.color = '#2E2E5C';
-
-
+        p.appendChild(document.createTextNode(`Mad → ${destinoBusqueda} | ${vuelo.hora} -  ${vuelo.horallegada} | ${vuelo.precio}€`));
+        
+        divVuelos.appendChild(div1);
+        div1.appendChild(p);
+        div1.setAttribute("id", "cajaVuelo");
+        div1.setAttribute("class", "cajareserva");
+  
         var botonCompraVuelo = document.createElement("button");
         div1.appendChild(botonCompraVuelo)
         botonCompraVuelo.innerHTML = "Comprar"
@@ -66,10 +62,3 @@ function pintarVuelos(vuelosEncontrados) {
         }
     })
 }
-
-function generaId() {
-    idActual += 1;
-    return idActual;
-}
-
-inicia();

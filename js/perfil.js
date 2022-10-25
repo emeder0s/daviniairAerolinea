@@ -1,44 +1,3 @@
-function inicializacion(){
-    var usuarios = new Usuarios();
-    var user = new Usuario("elena","mederos","54058798N","18-02-1991","elena@gmail.com","+34","686246095", "password",7000);
-    var user2 = new Usuario("carlos","mederos","54058798N","18-02-1991","carlos@gmail.com","+34","686246095", "password",200);
-    usuarios.añadirUsuario(user2);
-    usuarios.añadirUsuario(user);
-    // Quería usar el usuarios.guardarUSuarios(), pero si lo usaba no me debaja iniciar sesión.. por qué? No lo he descubierto
-    localStorage.setItem("usuarios", JSON.stringify(usuarios))
-    deshabilitarEdicion();
-   
-}
-
-//Comprueba si el usuario existe y si la contraseña es correcta, si es así inicia sesión.
-//Iniciar sesión consiste en guardar un objeto de la clase sesion en el localStorage con 
-//el estado = open y usuario = al usuario que se haya logueado
-function iniciarSesion(){
-    // var email = document.getElementById("email-input").value;
-    // var password = document.getElementById("password-input").value;
-    var email = "elena@gmail.com";
-    var password = "password";
-
-    var usuarios = usuariosFromLocalStorage();
-
-    var usuarioJSON = usuarios.existeUsuario(email);
-    var usuario = new Usuario();
-    usuario = usuario.fromJsonToUsuario(usuarioJSON);
-    if (usuario){
-        if (usuario.comprobarPassword(password)){
-           var sesion = new Sesion("open", usuario);
-           sesion.guardarSesion();
-           mostrarDatos();
-        }else{
-            var mensaje = "Login incorrecto";
-            mostrarMensaje(mensaje);
-        }
-    }else{
-        var mensaje = "No existe cuenta creada con ese email";
-        mostrarMensaje(mensaje);
-    }
-}
-
 //Cierra la sesion, es decir estado= close y el usuario = null. Luego la guarda en el localStorage.
 function cerrarSesion(){
     var sesion = sesionFromLocalStorage();
@@ -167,6 +126,6 @@ function openContent(evt, id) {
   }
  
 
-inicializacion();
-mostrarDatos();
-pintarGrafica ();
+  window.onload = () => {mostrarDatos();}
+
+
