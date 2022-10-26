@@ -6,7 +6,7 @@ function encogerBusqueda() {
     divs[0].style.display = 'none';
     if (divs.length == 1) {
         var div = document.createElement('div');
-        div.setAttribute('class', 'busqueda busqueda2');
+        div.setAttribute('class', 'busqueda2');
 
         var divOrigenDestino = document.createElement('div');
         var parrafoOrigenDestino = document.createElement('p');
@@ -31,20 +31,13 @@ function encogerBusqueda() {
         var divEditarBusqueda = document.createElement('div');
         divEditarBusqueda.appendChild(editarBusqueda);
 
-
         document.getElementsByClassName('contenedor')[0].appendChild(div);
-        div.style.width = '90%';
-        div.style.marginTop = '1%';
-        div.style.height = '48px';
-        div.style.display = 'flex';
-        div.style.justifyContent = 'space-around';
-
+        
 
         div.appendChild(divOrigenDestino);
         div.appendChild(divFecha);
         div.appendChild(divPasajeros);
         div.appendChild(editarBusqueda);
-        div.setAttribute('onclick', 'editarBusqueda()');
     } else {
         divs[1].style.display = 'flex';
         divs[1].getElementsByTagName('p')[0].innerHTML = `MAD → ${destino} |  Fecha: ${fecha} | Número de pasajeros: ${numPasajeros}`;
@@ -54,7 +47,7 @@ function encogerBusqueda() {
 
 function editarBusqueda() {
     document.getElementsByClassName('busqueda')[0].style.display = 'flex';
-    document.getElementsByClassName('busqueda')[1].style.display = 'none';
+    document.getElementsByClassName('busqueda2')[0].style.display = 'none';
     var vuelos = document.getElementById('vuelos');
     vuelos.parentNode.removeChild(vuelos);
 }

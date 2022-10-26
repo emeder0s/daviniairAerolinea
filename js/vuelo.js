@@ -13,10 +13,14 @@ function buscarVuelos() {
 }
 
 function pintarVuelos(vuelosEncontrados) {
-    var fechaBusqueda = document.getElementById("fecha").value
-    var destinoBusqueda = document.getElementsByTagName('select')[0].value
+    var fechaBusqueda = document.getElementById("fecha").value;
+    var destinoBusqueda = document.getElementsByTagName('select')[0].value;
+    var cabecera = document.createElement("h3")
+    var cabeceraText=document.createTextNode("Selecciona tu vuelo");
+    cabecera.appendChild(cabeceraText);
     var divVuelos = document.createElement("div");
     divVuelos.setAttribute('id', 'vuelos');
+    divVuelos.appendChild(cabecera);
     document.getElementsByClassName('contenedor')[0].appendChild(divVuelos);
 
     vuelosEncontrados.forEach(vuelo => {
@@ -24,18 +28,51 @@ function pintarVuelos(vuelosEncontrados) {
         var div1 = document.createElement("div");
         var p = document.createElement("p")
 
-        p.appendChild(document.createTextNode(`Mad → ${destinoBusqueda} | ${vuelo.hora} -  ${vuelo.horallegada} | ${vuelo.precio}€`));
-        
-        divVuelos.appendChild(div1);
+        var divOrigen = document.createElement("div");
+        var ciudadOrigen = document.createElement("p")
+        ciudadOrigen.setAttribute("class","origen-destino-large");
+        ciudadOrigen.innerHTML = "Madrid"
+        var horaSalida =document.createElement("p")
+        horaSalida.setAttribute("class","horas-vuelos");
+        horaSalida.innerHTML = `Salida: ${vuelo.hora}h`;
+        divOrigen.appendChild(ciudadOrigen);
+        divOrigen.appendChild(horaSalida);
+
+        var divDestino = document.createElement("div");
+        var ciudadDestino = document.createElement("p")
+        ciudadDestino.setAttribute("class","origen-destino-large");
+        ciudadDestino.innerHTML = destinoBusqueda;
+        var horaLlegada =document.createElement("p")
+        horaLlegada.setAttribute("class","horas-vuelos");
+        horaLlegada.innerHTML = `Llegada: ${vuelo.horallegada}h`;
+        divDestino.appendChild(ciudadDestino);
+        divDestino.appendChild(horaLlegada);
+
+        var divPrecio = document.createElement("div");
+        divPrecio.setAttribute("class","precio-compra");
+        var parrafoPrecio = document.createElement("p");
+        parrafoPrecio.innerHTML = vuelo.precio+"€";
+        divPrecio.appendChild(parrafoPrecio);
+
+        var divFlecha = document.createElement('div');
+        divFlecha.setAttribute("class","flecha");
+        var parrafoFechaFlecha = document.createElement('p');
+        var flecha = document.createTextNode("--------------------------");
+        parrafoFechaFlecha.appendChild(flecha);
+        divFlecha.appendChild(parrafoFechaFlecha);
+
+        div1.appendChild(divOrigen);
+        div1.appendChild(divFlecha);
+        div1.appendChild(divDestino);
+        div1.appendChild(divPrecio);
+
         div1.appendChild(p);
         div1.setAttribute("id", "cajaVuelo");
         div1.setAttribute("class", "cajareserva");
   
-        var botonCompraVuelo = document.createElement("button");
-        div1.appendChild(botonCompraVuelo)
-        botonCompraVuelo.innerHTML = "Comprar"
+        divVuelos.appendChild(div1);
 
-        botonCompraVuelo.onclick = function () {
+        divPrecio.onclick = function () {
             var asientosQueQuiereElUsuario = parseInt(document.getElementById("pasajeros").value);
             var idVuelo = vuelo.id;
             //recoger el objeto del localstorage
@@ -44,21 +81,32 @@ function pintarVuelos(vuelosEncontrados) {
             localStorage.setItem('vueloSeleccionado', JSON.stringify(vuelo));
             localStorage.setItem('numPasajerosReservaActual', asientosQueQuiereElUsuario);
             realizaReserva(vuelo);
-            var sesion = JSON.parse(localStorage.getItem("sesion"));
-            if (sesion) {
-                localStorageVuelos.forEach(localVuelo => {
-                    if (idVuelo == localVuelo.id) {
-                        //restar asientos
-                        localVuelo.asientosLibres -= asientosQueQuiereElUsuario;
-                        //Volvemos a actualizar base de datos con los plazas restantes
-                        localStorage.setItem("vuelos", JSON.stringify(localStorageVuelos))
-                        console.log(localVuelo)
-                    }
-                });
-                window.location = 'reserva.html';
-            } else {
-                alert('Tienes que iniciar sesion');
-            }
+            window.location = 'reserva.html';
+            //ESTO DESDE MI PUNTO DE VISTA SE TENDRÍA QUE HACER UNA VEZ SE HAYA COMPRADO EL BILLETE
+            // var sesion = JSON.parse(localStorage.getItem("sesion"));
+            // if (sesion) {
+            //     localStorageVuelos.forEach(localVuelo => {
+            //         if (idVuelo == localVuelo.id) {
+            //             //restar asientos
+            //             localVuelo.asientosLibres -= asientosQueQuiereElUsuario;
+            //             //Volvemos a actualizar base de datos con los plazas restantes
+            //             localStorage.setItem("vuelos", JSON.stringify(localStorageVuelos))
+            //             console.log(localVuelo)
+            //         }
+            //     });
+               
+            // } else {
+            //     alert('Tienes que iniciar sesion');
+            // }
         }
     })
+}
+
+function checkFormVuelos(){
+    if (document.getElementById("fecha").value){
+        encogerBusqueda(); 
+        buscarVuelos();
+    }else{
+        document.getElementById("fechaHelp").style.display="";
+    }
 }

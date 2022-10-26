@@ -8,11 +8,12 @@ body {
     /* background-color: rgb(46, 46, 92); */
     font-family: 'Open Sans', sans-serif;
     font-size: small;
+    background-color: #eeeeee;
 }
 
 #fondoHome {
     background-image: url(/img/avion2.png);
-    opacity: 0.5;
+    opacity: 0.8;
     width: 100%;
     height: 70%;
     position: absolute;
@@ -41,14 +42,6 @@ body {
     flex-direction: column;
 }
 
-.busqueda2{
-    width: 90%; 
-    margin-top: 1%; 
-    height: 48px; 
-    display: flex; 
-    justify-content: space-around;
-}
-
 .campos-busqueda{
     display: flex;
     flex-direction: row;
@@ -68,21 +61,23 @@ body {
     flex-direction: column;
     justify-content: center;
     margin-top: 50px;
-    gap: 70px;
     width: 100%;
+    /* gap: 70px; */
+}
+
+#vuelos h3 {
+    margin-left: 20px;
 }
 
 .cajareserva{
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    /* width: 600px; */
+    justify-content: center;
     height: 100px;
     text-align: center;
     align-items: center;
     background-color: white;
-    /* border-radius: 10px; */
-    box-shadow: 1px 1px 5px;
+    border-bottom: 1px solid #bac1c2;
+    padding: 3px;
 }
 
 .cajaprecio{
@@ -104,19 +99,28 @@ body {
     justify-content: space-between;
 }
 
-div.busqueda.busqueda2 {
-    background-color: white;
-    width: 90%;
-    margin-top: 8%;
+.cajareserva div{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+div.busqueda2 {
+    background-color: #eeeeee;
+    width: 100%;
     border: 1px solid grey;
-    border-radius: 10px;
     height: fit-content;
-    margin-top: 1%;
+    margin-top: 0;
+    padding: 1%;
+    box-shadow: 1px 1px 5px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: center;
+    justify-content: space-around;
+}
+div.busqueda2 p{
+    margin-bottom:0px;
 }
 
 .modal-footer{
@@ -151,3 +155,42 @@ div.busqueda.busqueda2 {
 p.origen-destino {
     font-size: 16px;
 }
+
+.precio-compra{
+    background: #00629c;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-shadow: 1px 1px 3px black;
+    cursor: pointer;
+}
+
+.precio-compra:hover{
+    background: #0069D9;
+}
+
+p.horas-vuelos {
+    font-size: 13px;
+    color: #7e7d7d;
+    margin: 0px;
+}
+
+p.origen-destino-large{
+    margin: 0px;
+    font-size: 20px;
+}
+
+.flecha p{
+    color: #9b9b9b;
+}
+
+#fechaHelp{
+    background: #f44336;
+    color: white;
+}
+

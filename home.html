@@ -27,7 +27,7 @@
             <div class="campos-busqueda">
                 <div class="form-group">
                     <label for="origen">Origen</label>
-                    <input id="origen" class="form-control form-control-sm" type="text" value="Madrid">
+                    <input id="origen" class="form-control form-control-sm" type="text" value="Madrid" readonly>
                 </div>
                 <div class="form-group">
                     <label for="destino">Destino</label>
@@ -39,15 +39,17 @@
                 </div>
                 <div class="form-group">
                     <label for="pasajeros">Nº Pasajeros</label>
-                    <input type="number" class="form-control form-control-sm pasajeros" id="pasajeros" min="1" max="10" placeholder="0"></label>
+                    <input type="number" class="form-control form-control-sm pasajeros" id="pasajeros" min="1" max="10" value="1"></label>
                 </div>
                 <div class="form-group">
                     <label for="fecha">Fecha</label>
-                    <input type="date" class="fecha form-control form-control-sm" id="fecha">
+                    <input type="date" class="fecha form-control form-control-sm" aria-describedby="fechaHelp"id="fecha">
+                    <small id="fechaHelp" class="form-text" style="display:none">Debe seleccionar una fecha</small>
+
                 </div>
             </div>
             <div>
-                <button id="buscar" type="button" class="btn btn-primary" onclick="encogerBusqueda(); buscarVuelos();">Buscar vuelos</button>
+                <button id="buscar" type="button" class="btn btn-primary" onclick="checkFormVuelos();">Buscar vuelos</button>
             </div>
         </div>
     </div>
@@ -69,7 +71,7 @@
             <div class="form-group">
                 <label for="password-input">Password</label>
                 <input type="password" class="form-control" id="password-input" aria-describedby="passwordHelp" placeholder="Enter password">
-                <small id="passwordHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                <small id="passwordHelp" class="form-text text-muted">No debes compartir tu contraseña con nadie</small>
             </div>
           <button type="button" class="btn btn-primary" onclick="iniciarSesion()">Iniciar Sesion</button>
         </div>

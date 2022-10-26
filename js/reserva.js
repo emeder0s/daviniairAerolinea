@@ -19,3 +19,7 @@ function realizaReserva(vuelo) {
     localStorage.setItem('reservaActual', JSON.stringify(reserva));
 }
 
+function iniciarSesionYAutoCommpleta(){
+    
+}
+
