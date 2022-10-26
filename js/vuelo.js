@@ -1,5 +1,8 @@
 function buscarVuelos() {
     var fechaBusqueda = document.getElementById("fecha").value //Ya tenemos recogida la fecha.
+    if (fechaBusqueda[8] == 0){
+        fechaBusqueda = fechaBusqueda.substr(0, fechaBusqueda.length - 2)+fechaBusqueda[9];
+    }
     var destinoBusqueda = document.getElementsByTagName('select')[0].value//el destino que marca el usuario.
     var pasajerosBusqueda = parseInt(document.getElementById("pasajeros").value)//numero de asisentos elegidos por el usuario.
     var datosVuelos = JSON.parse(localStorage.getItem("vuelos"))// creamos en una nueva variable los datos en un array que tenenmos metidos en localstorage.
@@ -102,11 +105,34 @@ function pintarVuelos(vuelosEncontrados) {
     })
 }
 
+//Hace las validaciones del 
+function validaPasajeros(numPasajeros){
+    return numPasajeros < 10
+}
+
+//Devuelve true si todas la validaciones de los input del formulario de búsqueda de vuelos son correctas
+function validacionesOK(){
+    var destino = document.getElementById("destino").value;
+    var validacionDestino = destino == "Edimburgo" || destino == "París" || destino == "Ciudad de Mexico";
+    var validacionOrigen = document.getElementById("origen").value == "Madrid";
+    var validacionPasajeros = validaPasajeros(parseInt(document.getElementById("pasajeros").value));
+
+    return validacionDestino && validacionOrigen && validacionPasajeros
+}
+
+//Como la fecha es el único campo que está vacio al cargar la página, comprueba que le fecha no esté vacía para seguir con el resto de comprobaciones
 function checkFormVuelos(){
     if (document.getElementById("fecha").value){
-        encogerBusqueda(); 
-        buscarVuelos();
+        if(validacionesOK()){
+            encogerBusqueda(); 
+            buscarVuelos();
+        }else{
+            var mensaje = "No vayas de hacker"
+            console.log(mensaje);
+        }
+
     }else{
         document.getElementById("fechaHelp").style.display="";
     }
+    
 }

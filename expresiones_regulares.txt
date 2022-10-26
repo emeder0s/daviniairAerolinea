@@ -1,0 +1,82 @@
+"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" ----> para la comprobación del email
+
+"/^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$/" ----> para la comprobación de una tarjeta de crédito
+
+Condiciones del Password: Al menos una mayuscula. Al menos una minúscula,Al menos 1 número, Al menos un caracter especial y longitud mínima de 8.
+//comprobaciones contraseña
+function longitudPassword(password){
+    return password.length >= 8 && password.length <= 20
+}
+
+function esMayuscula(letra)
+{
+    return letra >= 65 && letra <= 90;
+}
+
+function mayusculas(password){
+    var i = 0;
+    var validation = false;
+    while(i<password.length && !validation){
+        validation = esMayuscula(password.charCodeAt(i));
+        i++;
+    }
+
+    return validation;
+}
+
+function esMinuscula(letra)
+{
+    return letra >= 97 && letra <= 122;
+}
+
+function minusculas(password){
+    var i = 0;
+    var validation = false;
+    while(i<password.length && !validation){
+        validation = esMinuscula(password.charCodeAt(i));
+        i++;
+    }
+
+    return validation;
+}
+
+function esNumero(letra){
+    return letra >= 48 && letra <= 57;
+}
+
+function numeros(password){
+	var i = 0;
+    	var validation = false;
+    	while(i<password.length && !validation){
+        validation = esNumero(password.charCodeAt(i));
+        i++;
+    	}
+    return validation
+}
+
+function esCaracterEspecial(letra){
+    return (letra >= 33 && letra <= 47) || (letra >= 58 && letra <= 64);
+}
+
+function caracteresEspeciales(password){
+    var i = 0;
+    var validation = false;
+    while(i<password.length && !validation){
+        validation = esCaracterEspecial(password.charCodeAt(i));
+        i++;
+    }
+
+    return validation;
+
+}
+
+function password(){
+    var password = document.querySelector("#password").value;
+    var longPassword = longitudPassword(password);
+    var tieneMayus = mayusculas(password);
+    var tieneMinus = minusculas(password);
+    var tieneNums = numeros(password);
+    var caracEspeciales = caracteresEspeciales(password);
+
+    return longPassword && tieneNums && tieneMayus && tieneMinus && caracEspeciales;
+}

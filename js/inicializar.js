@@ -78,3 +78,5 @@ function inicializar(){
         iniciaUsuarios();
     }
 }
+
+inicializar()

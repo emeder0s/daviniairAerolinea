@@ -10,48 +10,43 @@ function creaDiv(i) {
     var div1 = document.createElement('div');
     var div2 = document.createElement('div');
     var div3 = document.createElement('div');
+    div1.setAttribute("class","pasajero");
+    div2.setAttribute("class","titulo-pasajero");
+    div3.setAttribute("class","datos-pasajero");
     document.getElementsByClassName('pasajeros')[0].appendChild(div1);
     div1.appendChild(div2);
     div1.appendChild(div3);
-    div1.style.display = 'grid';
-    div1.style.gridTemplateColumns = '180px 400px';
-    div1.style.gridTemplateRows = '230px';
-    div2.style.backgroundColor = 'white';
-    div3.style.backgroundColor = 'white';
-    div3.style.boxShadow = '1px 1px 6px';
-    div2.style.boxShadow = '1px 1px 6px';
-    div2.style.padding = '15%';
-    div3.style.padding = '6%';
-    div1.style.margin = '0.6%';
 
     var pas = document.createElement('p');
-    pas.appendChild(document.createTextNode(`PASAJERO ${i + 1}:`));
-    pas.style.fontFamily = 'system-ui';
-    pas.style.fontWeight = '500';
-    pas.style.color = '#2e2e5c';
+    pas.appendChild(document.createTextNode(`PASAJERO ${i + 1}`));
     div2.appendChild(pas);
     var p = document.createElement('p');
     p.appendChild(document.createTextNode('Los datos de los pasajeros deben coincidir con la documentación que presenten en el momento del vuelo.'));
-    p.style.color = 'grey'
+    p.setAttribute("class", "mensaje");
     div2.appendChild(p);
 
-    div3.style.display = 'flex';
-    div3.style.flexDirection = 'column';
-    div3.style.justifyContent = 'space-evenly';
-    div3.style.alignItems = 'stretch';
     div3.setAttribute('id', `pasajero${i}`);
 
     var nombre = document.createElement('input');
+    nombre.setAttribute('class', 'nombre');
     nombre.setAttribute('placeholder', 'Nombre');
     nombre.setAttribute('required', 'required');
     div3.appendChild(nombre);
 
     var apellidos = document.createElement('input');
+    apellidos.setAttribute('class', 'apellidos');
     apellidos.setAttribute('required', 'required');
     apellidos.setAttribute('placeholder', 'Apellidos');
     div3.appendChild(apellidos);
 
+    var email = document.createElement('input');
+    email.setAttribute('class', 'email');
+    email.setAttribute('required', 'required');
+    email.setAttribute('placeholder', 'Email');
+    div3.appendChild(email);
+
     var dni = document.createElement('input');
+    dni.setAttribute('class', 'dni');
     dni.setAttribute('required', 'required');
     dni.setAttribute('placeholder', 'DNI');
     div3.appendChild(dni);
@@ -63,18 +58,29 @@ function creaDiv(i) {
     label.appendChild(necEspeciales);
     label.appendChild(document.createTextNode('Pasajero con necesidades especiales'));
     div3.appendChild(label);
-    div3.setAttribute('class', 'pasajero');
 }
 
 
 function pintaPrecioTotal() {
     var vuelo = JSON.parse(localStorage.getItem('vueloSeleccionado'));
+    var pasajeros = `<div>${vuelo.origen}</div`;
+    var resumenVuelo = document.createElement("p");
+    var resumenFechaHora = document.createElement("p");
+    var resumenPasajeros = document.createElement("p");
+    var resumenPrecio = document.createElement("p");
+    pasajeros.innerHTML=`${localStorage.getItem('numPasajerosReservaActual')} x Pasajero`;
+    resumenVuelo.innerHTML = `<strong>${vuelo.origen}</strong> -> <strong>${vuelo.destino}</strong>`
+    resumenFechaHora.innerHTML = `${vuelo.fecha} | ${vuelo.hora}h`
     var precioTotal = vuelo.precio * JSON.parse(localStorage.getItem('numPasajerosReservaActual'));
-    document.getElementById('precioTotal').appendChild(document.createTextNode('TOTAL: ' + precioTotal + '€'));
+    document.getElementById('precioTotal').appendChild(resumenVuelo);
+    document.getElementById('precioTotal').appendChild(resumenFechaHora);
+    document.getElementById('precioTotal').appendChild(resumenPasajeros);
+    document.getElementById('precioTotal').appendChild(resumenPrecio);
+    document.getElementById('precioTotal').appendChild(document.createTextNode('Precio total: ' + precioTotal + '€'));
 }
 
 function continuarApago() {
-    let datosPasajeros = document.getElementsByClassName('pasajero');
+    let datosPasajeros = document.getElementsByClassName('datos-pasajero');
     let pasajeros = [];
     i = 0;
     var nombre = datosPasajeros[0].getElementsByTagName('input')[0].value;
@@ -100,10 +106,7 @@ function continuarApago() {
         localStorage.setItem('reservaActual', JSON.stringify(reserva));
         window.location = 'pago.html';
     } else {
-        alert('todos los campos son obligatorios');
+        document.getElementById("mensaje-continuar").style.display="";
     }
 }
 
-function atras() {
-    window.location = 'home.html';
-}

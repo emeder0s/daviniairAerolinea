@@ -20,6 +20,13 @@ function realizaReserva(vuelo) {
 }
 
 function iniciarSesionYAutoCommpleta(){
-    
+    iniciarSesion("reserva");
+    var sesion = sesionFromLocalStorage();
+    var usuario = usuarioFromSesion(sesion);
+    document.querySelector("div#pasajero0 input.nombre").value = usuario.nom;
+    document.querySelector("div#pasajero0 input.apellidos").value = usuario.ape;
+    document.querySelector("div#pasajero0 input.email").value = usuario.email;
+    document.querySelector("div#pasajero0 input.dni").value = usuario.dni;
 }
+
 

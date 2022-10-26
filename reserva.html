@@ -11,29 +11,40 @@
 </head>
 <body>
     <nav></nav>
-    <div class="pasajeros">
-        <h3>Información de pasajeros</h3>
-        <div>
-            Accede con tu cuenta Daviniair y acumula Davinity points
-            <div class="form-group">
-                <label for="email-input">Email</label>
-                <input type="email" class="form-control" id="email-input" placeholder="Enter email">
+    <div class="busqueda2">
+        <div><p class="origen-destino">Madrid → Edimburgo</p></div>
+        <div><p>Fecha : 2022-10-26</p></div><div><p>Número de pasajeros : 1</p></div>
+        <button class="btn btn-primary btn-sm button-nueva-busqueda" onclick="editarBusqueda()">EDITAR BÚSQUEDA</button>
+    </div>
+    <div id="contenido">
+        <div class="pasajeros">
+            <div id="resgistro-reserva">
+                <h3>Información de pasajeros</h3>
+                <p>Accede con tu cuenta Daviniair y acumula Davinity points con los que podrás disfrutar de descuentos en tus próximos viajes.</p>
+                <div id="form-reserva">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email-input" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password-input" aria-describedby="passwordHelp" placeholder="Contraseña">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="iniciarSesionYAutoCommpleta()">Iniciar Sesion</button>
+                </div>
+                <div id="mensaje-continuar" class="alert alert-danger" role="alert" style="display:none">
+                    Para continuar debe haber iniciado sesión y tener los campos de TODOS los pasajeros rellenos
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password-input">Password</label>
-                <input type="password" class="form-control" id="password-input" aria-describedby="passwordHelp" placeholder="Enter password">
-                <small id="passwordHelp" class="form-text text-muted">No debes compartir tu contraseña con nadie</small>
-            </div>
-          <button type="button" class="btn btn-primary" onclick="iniciarSesionYAutoCommpleta()">Iniciar Sesion</button>
+        </div>
+        <div id="resumen-reserva">
+            <aside>
+                <h4>Resumen</h4>
+                <p id="precioTotal"></p>
+                <span class='glyphicon glyphicon-use' aria-hidden="true"></span>
+                <button id="continuar" class="btn btn-primary" onclick="continuarApago();" >CONTINUAR</button>
+            </aside>
         </div>
     </div>
-
-    <div id="precioBoton">
-        <button id="continuar" onclick="atras();">ATRAS</button>
-        <p id="precioTotal"></p>
-        <button id="continuar" onclick="continuarApago();">CONTINUAR</button>
-    </div>
-    
+    <script src="js/clases.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/vuelo.js"></script>
     <script src="js/reserva.js"></script>
