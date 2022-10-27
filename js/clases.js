@@ -1,6 +1,6 @@
 // Clas Usuario
 class Usuario {
-    constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points){
+    constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points,historialCompra){
         this.nom = nom;
         this.ape = ape;
         this.dni = dni;
@@ -10,6 +10,7 @@ class Usuario {
         this.tel = tel;
         this.pass = pass;
         this.points = points;
+        this.historialCompra = historialCompra;
     }
     
     //Comprueba si la contraseña del usuario es la contraseña guardada para el mismo

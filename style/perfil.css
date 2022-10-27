@@ -9,6 +9,7 @@
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 30%;
+    height: 100vh;
   }
   
   /* Style the buttons inside the tab */
@@ -45,6 +46,7 @@
     border-left: none;
     background-color: white;
     padding: 30px;
+    height: 100vh;
   }
 
  input {
@@ -112,3 +114,4 @@ div.registro div {
   margin-top:5px;
 
 }
+
