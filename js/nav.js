@@ -43,8 +43,6 @@ function navMenu(nav,sesion){
         enlaceRegistroLi.appendChild(enlaceRegistro);
     }else{        
         var enlaceRegistroLi = null;
-  
-        
         var dropdownMenuDiv = document.createElement("div");
         dropdownMenuDiv.setAttribute("class","dropdown-menu");
         dropdownMenuDiv.setAttribute("aria-labelledby","dropdownMenuLink");
@@ -163,3 +161,4 @@ window.onload = () => {
     nav.setAttribute("id", "navigation-nav")
     navMenu(nav,JSON.parse(localStorage.getItem("sesion")));
 }
+

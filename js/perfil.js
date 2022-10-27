@@ -126,6 +126,6 @@ function openContent(evt, id) {
   }
  
 
-  window.onload = () => {mostrarDatos();}
+  mostrarDatos();
 
 
