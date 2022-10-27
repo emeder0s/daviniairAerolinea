@@ -7,7 +7,6 @@
     <title>Reserva</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="style/reserva.css" rel="stylesheet">
-    
 </head>
 <body>
     <nav></nav>
@@ -44,11 +43,84 @@
             </aside>
         </div>
     </div>
+    <!-- Modal Iniciar Sesion-->
+    <div class="modal fade" id="iniSesionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Inicia sesión con tu cuenta Daviniair</h5>
+            <button id="close-ini-sesion" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email-input">Email</label>
+                    <input type="email" class="form-control" id="email-sesion-input" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password-sesion-input">Password</label>
+                    <input type="password" class="form-control" id="password-sesion-input" aria-describedby="passwordHelp" placeholder="Enter password">
+                    <small id="passwordHelp" class="form-text text-muted">No debes compartir tu contraseña con nadie</small>
+                </div>
+            <button type="button" class="btn btn-primary" onclick="iniciarSesion('nav')">Iniciar Sesion</button>
+            </div>
+            <div class="modal-footer">
+            <p>¿Todavía no te has dado de alta?</p>
+            <a href="registro.html">Regístrate</p></a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Modal Registro -->
+    <div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="registroModalLabel">Regístrate para tener tu cuenta Daviniair</h5>
+                <button id="close-registro" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="r-email-input">Email</label>
+                        <input type="email" class="form-control" id="r-email-input" aria-describedby="r-emaildHelp">
+                        <small id="r-emaildHelp" class="form-text text-muted">Debe cumplir con el formato email: xxxx@xxx.xxx</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-nombre-input">Nombre</label>
+                        <input type="text" class="form-control" id="r-nombre-input" aria-describedby="r-nombreHelp">
+                        <small id="r-nombredHelp" class="form-text text-muted">Sólo puede contener letras</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-apellidos-input">Apellidos</label>
+                        <input type="text" class="form-control" id="r-apellidos-input" aria-describedby="r-apellidoHelp">
+                        <small id="r-apellidoHelp" class="form-text text-muted">Sólo puede contener letras</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-password-input">Contraseña</label>
+                        <input type="password" class="form-control" id="r-password-input" aria-describedby="r-passwordHelp">
+                        <small id="r-passwordHelp" class="form-text text-muted">Debe tener una longitud por lo menos de 8 caracteres y contener al menos una mayúscula, una minúscula, un número y un caracter especial (&,%,$...)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-repetirPassword-input">Repetir contraseña</label>
+                        <input type="password" class="form-control" id="r-repetirPassword-input" aria-describedby="r-repetirPasswordHelp">
+                        <small id="r-repetirPassworddHelp" class="form-text text-muted">Debe coincidir con la contraseña</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="registrarse()">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="js/clases.js"></script>
     <script src="js/nav.js"></script>
+    <script src="js/registro.js"></script>
     <script src="js/vuelo.js"></script>
-    <script src="js/reserva.js"></script>
     <script src="js/reservaPage.js"></script>
+    <script src="js/reserva.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

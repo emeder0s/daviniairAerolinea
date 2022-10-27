@@ -28,25 +28,25 @@ function creaDiv(i) {
     div3.setAttribute('id', `pasajero${i}`);
 
     var nombre = document.createElement('input');
-    nombre.setAttribute('class', 'nombre');
+    nombre.setAttribute('class', 'nombre-reserva');
     nombre.setAttribute('placeholder', 'Nombre');
     nombre.setAttribute('required', 'required');
     div3.appendChild(nombre);
 
     var apellidos = document.createElement('input');
-    apellidos.setAttribute('class', 'apellidos');
+    apellidos.setAttribute('class', 'apellidos-reserva');
     apellidos.setAttribute('required', 'required');
     apellidos.setAttribute('placeholder', 'Apellidos');
     div3.appendChild(apellidos);
 
     var email = document.createElement('input');
-    email.setAttribute('class', 'email');
+    email.setAttribute('class', 'email-reserva');
     email.setAttribute('required', 'required');
     email.setAttribute('placeholder', 'Email');
     div3.appendChild(email);
 
     var dni = document.createElement('input');
-    dni.setAttribute('class', 'dni');
+    dni.setAttribute('class', 'dni-reserva');
     dni.setAttribute('required', 'required');
     dni.setAttribute('placeholder', 'DNI');
     div3.appendChild(dni);

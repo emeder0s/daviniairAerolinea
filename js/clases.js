@@ -163,10 +163,10 @@ class Sesion{
     }
     
     //Cierra la sesión
-    cerrarSesion(){
-        this.estado = "close";
-        this.usuario = null;
-    }
+    // cerrarSesion(){
+    //     this.estado = "close";
+    //     this.usuario = null;
+    // }
     
     //Guarda la sesión en el localStorage
     guardarSesion(){
@@ -199,9 +199,13 @@ function mostrarMensaje(mensaje){
 
 //Devuelve la sesión guarda en el localStorage como objeto Sesion
 function sesionFromLocalStorage(){
-    var sesionJSON = JSON.parse(localStorage.getItem("sesion"));
-    var sesion = new Sesion();
-    sesion = sesion.fromJsontoSesion(sesionJSON);
+    if (localStorage.getItem("sesion")){
+        var sesionJSON = JSON.parse(localStorage.getItem("sesion"));
+        var sesion = new Sesion();
+        sesion = sesion.fromJsontoSesion(sesionJSON);
+    }else{
+        sesion= null;
+    }
 
     return sesion;
 }
