@@ -50,7 +50,6 @@ function generaVuelos100dias() {
 
     }
 }
-console.log(genera100fechas());
 
 
 

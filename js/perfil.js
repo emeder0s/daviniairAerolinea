@@ -19,7 +19,6 @@ function guardarDatosEnLocalStorage(usuarios,usuario,sesion,tipoDato){
         sesion.usuario = usuario;
         sesion.guardarSesion();
         //actualizar el array de usuarios --> puedo buscar el usuario y luego modificarlo con las funciones que ya tengo pensadas arriba
-        console.log(usuarios.buscarUsuario(usuario));
         tipoDato == "personales" ? usuarios.modificarDatosPersonales(usuario, usuarios.buscarUsuario(usuario)) : usuarios.modificarPassword(usuario, usuarios.buscarUsuario(usuario));
         
         usuarios.guardarUsuarios();

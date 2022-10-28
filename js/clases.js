@@ -1,3 +1,32 @@
+//Class Reserva
+class Reserva {
+    constructor(vuelo) {
+        this.vuelo = vuelo; //objeto de tipo Vuelo
+        this.pasajeros; //Array de JSONs con los datos de los pasajeros
+        this.metodoPago; //JSON con los datos de pago
+    }
+
+    setPasajeros(pasajeros) {
+        this.pasajeros = pasajeros;
+    }
+
+    setMetodoPago(metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+}
+
+//Class Compra
+class Compra {
+    constructor(numReserva, fechaReserva, usuario, pasajeros, vuelo, totalPagado) {
+        this.numReserva = numReserva;
+        this.fechaReserva = fechaReserva;
+        this.usuario = usuario;
+        this.pasajeros = pasajeros;
+        this.vuelo = vuelo;
+        this.totalPagado = totalPagado;
+    }
+}
+
 // Clas Usuario
 class Usuario {
     constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points,historialCompra){
@@ -11,6 +40,11 @@ class Usuario {
         this.pass = pass;
         this.points = points;
         this.historialCompra = historialCompra;
+    }
+
+    //Añade un usuario
+    añadirCompra(compra){
+        this.historialCompra.push(compra);
     }
     
     //Comprueba si la contraseña del usuario es la contraseña guardada para el mismo
@@ -145,6 +179,11 @@ class Usuarios{
         this.usuarios[posicion].pass = usuario.pass;
     }
 
+    //Modifica el password de un usuario --> ESTA DEBERÍA IR EN LA CLASE USUARIO
+    modificarHistorialCompra(usuario, posicion){
+        this.usuarios[posicion].historialCompra = usuario.historialCompra;
+    }
+
     //Guarda los usuarios en el localStorage
     guardarUsuarios(){
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios))
@@ -162,12 +201,6 @@ class Sesion{
         this.estado = estado;
         this.usuario = usuario;
     }
-    
-    //Cierra la sesión
-    // cerrarSesion(){
-    //     this.estado = "close";
-    //     this.usuario = null;
-    // }
     
     //Guarda la sesión en el localStorage
     guardarSesion(){
@@ -219,6 +252,7 @@ function usuariosFromLocalStorage(){
 
     return usuarios;
 }
+usuariosFromLocalStorage()
 
 //Devuelve el usuario guardo en la sesion del localStorage como objeto Usuario
 function usuarioFromSesion(sesion){

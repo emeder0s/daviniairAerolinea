@@ -97,7 +97,7 @@ function actualizarNav(){
 //Comprueba si el usuario existe y si la contraseña es correcta, si es así inicia sesión.
 //Iniciar sesión consiste en guardar un objeto de la clase sesion en el localStorage con 
 //el estado = open y usuario = al usuario que se haya logueado
-function iniciarSesion(from,modal){
+function iniciarSesion(from){
     // var email = document.getElementById("email-sesion-input").value;
     // var password = document.getElementById("password-sesion-input").value;
     var email = "elena@gmail.com";
@@ -135,10 +135,9 @@ function iniciarSesion(from,modal){
 //La contraseña: Debe tener una longitud por lo menos de 8 caracteres y 
 //contener al menos una mayúscula, una minúscula, un número y un caracter especial (&,%,$...)
 function registrarse(){
-    var usuario = new Usuario(document.getElementById("r-nombre-input").value,document.getElementById("r-apellidos-input").value,"","",document.getElementById("r-email-input").value,"","",document.getElementById("r-password-input").value,0);
-    console
+    var usuario = new Usuario(document.getElementById("r-nombre-input").value,document.getElementById("r-apellidos-input").value,"","",document.getElementById("r-email-input").value,"","",document.getElementById("r-password-input").value,0); 
     var usuarios = usuariosFromLocalStorage();
-    console.log(usuarios);
+
     if(usuarios.existeUsuario(document.getElementById("r-email-input").value)== null){
         usuarios.añadirUsuario(usuario);
         usuarios.guardarUsuarios();

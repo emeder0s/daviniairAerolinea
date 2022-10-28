@@ -94,7 +94,6 @@ function pintarVuelos(vuelosEncontrados) {
             //             localVuelo.asientosLibres -= asientosQueQuiereElUsuario;
             //             //Volvemos a actualizar base de datos con los plazas restantes
             //             localStorage.setItem("vuelos", JSON.stringify(localStorageVuelos))
-            //             console.log(localVuelo)
             //         }
             //     });
                
