@@ -1,13 +1,3 @@
-class Compra {
-    constructor(numReserva, fechaReserva, usuario, numPasajes, vuelo, totalPagado) {
-        this.numReserva = numReserva;
-        this.fechaReserva = fechaReserva;
-        this.usuario = usuario;
-        this.numPasajes = numPasajes;
-        this.vuelo = vuelo;
-        this.totalPagado = totalPagado;
-    }
-}
 
 function userHistorial() {
     let historial = JSON.parse(localStorage.compras);
@@ -28,7 +18,6 @@ function desplegarHistorial() {
     // let printReserva = `No. reserva: ${numeroReserva}`;
     // let printFechaReserva = `Comprado el : ${fechReserva}`;
     // let printPagado = `Total compra: ${pagado} €`;
-    // console.log(comprasUsuario);
     comprasUsuario.forEach(element => {
         let numeroReserva = element.numReserva;
         let fechReserva = element.fechaReserva;

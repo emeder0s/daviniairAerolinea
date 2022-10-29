@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav></nav>
+    <!-- <nav></nav> -->
     <div id="wrapper">
         <div class="row">
             <div class="col-xs-5">
@@ -22,8 +22,7 @@
                 </div>
                 <!--#cards end-->
             </div>
-            <!--col-xs-5 end-->
-            
+            <!--col-xs-5 end-->  
         </div>
         <!--row end-->
         <div class="row">
@@ -59,14 +58,13 @@
             </div>
             <!--col-xs-6 end-->
         </div>
+        <div id="precioBoton" class="row">
+            <p id="precioTotal"></p>
+            <button type="button" class="btn btn-primary" onclick="confirmarPago();">Pagar</button>
+        </div>
         <!--row end-->
     </div>
     <!--wrapper end-->
-    
-    <div id="precioBoton">
-        <p id="precioTotal"></p>
-        <button onclick="confirmarPago();" id="continuar">FINALIZAR</button>
-    </div>
     <script src="js/clases.js"></script>
     <script src="js/nav.js"></script>
     <!-- <script src="js/reserva.js"></script> -->

@@ -68,6 +68,12 @@ function iniciaUsuarios(){
     localStorage.setItem("usuarios", JSON.stringify(usuarios))
 }
 
+// ---------------INICIALIZACION DE LAS COMPRAS---------------------------
+function iniciaCompras(){
+    var compras = [];
+    localStorage.setItem("compras",JSON.stringify(compras));
+}
+
 //funcion que inicializa los usuarios y los vuelos
 function inicializar(){
     if (!localStorage.getItem("vuelos")){
@@ -76,6 +82,10 @@ function inicializar(){
     
     if (usuariosFromLocalStorage().usuarios.length == 0){
         iniciaUsuarios();
+    }
+
+    if(!localStorage.getItem("comopras")){
+        iniciaCompras();
     }
 }
 

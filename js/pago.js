@@ -12,24 +12,26 @@ function getCompra(reserva,usuario){
     return compra;
 }
 
+function añadirCompra(compra){
+    var compras = JSON.parse(localStorage.getItem("compras"));
+    compras.push(compra)
+    localStorage.setItem("compras", JSON.stringify(compras));
+}
+
 function añadirCompraAUsuario(reserva){
     var sesion = sesionFromLocalStorage();
     var usuario = usuarioFromSesion(sesion);
     var usuarios = usuariosFromLocalStorage();
     var compra = getCompra(reserva,usuario);
-    usuario.historialCompra.push(compra);
+    añadirCompra(compra);
+    usuario.historialCompra.push(compra.numReserva);
+    usuario.points += 100;
+    usuarios.modificarDatosPersonales(usuario, usuarios.buscarUsuario(usuario))
     usuarios.modificarHistorialCompra(usuario, usuarios.buscarUsuario(usuario));
     usuarios.guardarUsuarios();
-    //sesion.usuario = usuario;
-    //sesion.guardarSesion();
+    sesion.usuario = usuario;
+    sesion.guardarSesion();
 }
-
-var reserva = new Reserva();
-var reservaJson = JSON.parse(localStorage.getItem('reservaActual'));
-reserva = Object.assign(reserva, reservaJson);
-añadirCompraAUsuario(reserva)
-
-
 
 function restarAsientosVuelos(pasajeros){
 
@@ -41,7 +43,7 @@ function confirmarPago() {
     var fechaEx = document.getElementById('date').value;
     var cvv = document.getElementById('cvv').value;
     //Y que lleve a una pagina donde se muestran los datos de la compra
-    if (nombre != '' && numTarjeta != '' && fechaEx != '' && cvv != '') {
+    if (nombre && numTarjeta  && fechaEx  && cvv) {
         var reserva = new Reserva();
         var reservaJson = JSON.parse(localStorage.getItem('reservaActual'));
         reserva = Object.assign(reserva, reservaJson);
@@ -53,7 +55,7 @@ function confirmarPago() {
         });
         localStorage.setItem('reservaActual', JSON.stringify(reserva));
         añadirCompraAUsuario(reserva);
-        restarAsientosVuelos(reserva.pasajeros);
+        //restarAsientosVuelos(reserva.pasajeros);
         window.location = 'resumen.html';
     } else {
         alert('Todos los campos son obligatorios');

@@ -82,7 +82,10 @@ class Usuario {
                 break;
             case "telefono":
                 valor = this.tel;
-                    break; 
+                break; 
+            case "points":
+                valor = this.points;
+                break; 
             default:
                 break;
         }
@@ -113,7 +116,10 @@ class Usuario {
                 break;
             case "telefono":
                 this.tel = valor;
-                break;    
+                break;
+            case "points":
+                this.points = valor;
+                break;   
             default:
                 break;
         }
@@ -172,6 +178,7 @@ class Usuarios{
         this.usuarios[posicion].email = usuario.email;
         this.usuarios[posicion].exTtel = usuario.exTtel;
         this.usuarios[posicion].tel = usuario.tel;
+        this.usuarios[posicion].points = usuario.points;
     }
 
     //Modifica el password de un usuario --> ESTA DEBERÍA IR EN LA CLASE USUARIO

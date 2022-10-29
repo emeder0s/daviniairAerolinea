@@ -21,9 +21,10 @@ function autoCompletarSiSesion(){
     var sesion = sesionFromLocalStorage();
     if (sesion){
         var usuario = usuarioFromSesion(sesion);
-        autocompletar(usuario);        
+        autocompletar(usuario); 
+        document.getElementById("resgistro-reserva").style.display="none";    
     }
 }
 
-autoCompletarSiSesion()
+autoCompletarSiSesion();
 
