@@ -54,3 +54,5 @@ function editarBusqueda() {
 
 //No permitimos que se puedan seleccionar vuelos pasados a la fecha actual
 document.getElementById("fecha").min = new Date().toISOString().split("T")[0];
+
+generarNumVuelo()

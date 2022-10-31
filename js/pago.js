@@ -8,7 +8,7 @@ function getCompra(reserva,usuario){
     var totalPagado = reserva.vuelo.precio * reserva.pasajeros.length;
     var numReserva = generarNumReserva();
     var fechaReserva = new Date().toISOString().split("T")[0];
-    var compra = new Compra(numReserva, fechaReserva,usuario, reserva.pasajeros, reserva.vuelo, totalPagado);
+    var compra = new Compra(numReserva, fechaReserva,usuario.email, reserva.pasajeros, reserva.vuelo, totalPagado);
     return compra;
 }
 

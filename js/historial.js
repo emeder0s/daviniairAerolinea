@@ -11,13 +11,6 @@ function userHistorial() {
 }
 function desplegarHistorial() {
     let comprasUsuario = userHistorial()
-    // let numeroReserva = comprasUsuario[0].numReserva;
-    // let fechReserva = comprasUsuario[0].fechaReserva;
-    // let pasajes = comprasUsuario[0].numPasajes;
-    // let pagado = comprasUsuario[0].totalPagado;
-    // let printReserva = `No. reserva: ${numeroReserva}`;
-    // let printFechaReserva = `Comprado el : ${fechReserva}`;
-    // let printPagado = `Total compra: ${pagado} €`;
     comprasUsuario.forEach(element => {
         let numeroReserva = element.numReserva;
         let fechReserva = element.fechaReserva;
@@ -36,22 +29,6 @@ function desplegarHistorial() {
             }
             console.log(infoVuelos.length);
         }
-        console.log(infoVuelos);
-        // if (!infoVuelos) {
-        //     infoVuelos.push(element.vuelo);
-        // } else {
-        //     infoVuelos.push(element.Pasajero);
-        // }
-        // console.log(infoVuelos);
-        // let pVuelo  = document.createElement('p');
-        // let vueloDatos = document.createTextNode(vuelo);
-        // pVuelo.appendChild(vueloDatos);
-
-        // let pPasajeros  = document.createElement('p');
-        // let pasajeroDatos = document.createTextNode(pasajero);
-        // pVuelo.appendChild(vueloDatos);
-        // });
-        // console.table(printPasajes);
         let pagado = element.totalPagado;
         let printReserva = `No. reserva: ${numeroReserva}`;
         let printFechaReserva = `Comprado el : ${fechReserva}`;
@@ -99,13 +76,9 @@ function desplegarHistorial() {
         container.appendChild(row1);
         container.appendChild(row2);
         container.appendChild(row3);
-        document.body.appendChild(container);
+        document.getElementById("historial").appendChild(container);
     });
-    // // let texto = " Escriba el texto del párrafo: "; 
-    // let fila = document.createElement("div"); 
-    // // let contenido = document.createTextNode (texto); 
-    // // fila.appendChild (contenido); 
-    // // document.body.appendChild(fila); 
+
 
 
 

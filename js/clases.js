@@ -221,7 +221,7 @@ class Sesion{
 
 //Clase vuelo
 class Vuelo {
-    constructor(id, origen, destino, fecha, hora, horallegada, asientosLibres, precio) {
+    constructor(id, origen, destino, fecha, hora, horallegada, asientosLibres, precio, numVuelo) {
         this.id = id;
         this.origen = origen;
         this.destino = destino;
@@ -230,6 +230,7 @@ class Vuelo {
         this.horallegada = horallegada;
         this.asientosLibres = asientosLibres;
         this.precio = precio;
+        this.numVuelo = numVuelo
     }
 }
 

@@ -1,3 +1,6 @@
+var sesion = sesionFromLocalStorage();
+var usuario = usuarioFromSesion(sesion);
+
 //Cierra la sesion, es decir estado= close y el usuario = null. Luego la guarda en el localStorage.
 function cerrarSesion(){
     var sesion = sesionFromLocalStorage();
@@ -6,18 +9,12 @@ function cerrarSesion(){
 }
 
 function mostrarDatos(){
-    var sesion = sesionFromLocalStorage();
-    var usuario = usuarioFromSesion(sesion);
+    // var sesion = sesionFromLocalStorage();
+    // var usuario = usuarioFromSesion(sesion);
     var inputs = document.querySelectorAll(".info-personal-input");
     inputs.forEach(input => {
         if (input.id == "fechaNac"){
             var date = usuario.devolverAtributo(input.id);
-            // var date2 = date;
-            // var año = date.substring(6,9);
-            // var mes = date.substring(3,5);
-            // var dia = date.substring(0,2);
-            // date = `${año}${mes}${dia}`;
-            // console.log(date2);
             document.querySelector(`#${input.id}`).value = date;
         }else{
             document.querySelector(`#${input.id}`).value = usuario.devolverAtributo(input.id);
@@ -37,11 +34,9 @@ function guardarDatosEnLocalStorage(usuarios,usuario,sesion,tipoDato){
 
 function guardarDatos(){
     var sesion = sesionFromLocalStorage();
-    //CAMBIAR LA CLASE PARA QUE COJA EL SELECT TB!!!!!
     var datos = document.querySelectorAll(".info-personal-input");
     var usuario = usuarioFromSesion(sesion);
     var usuarios = usuariosFromLocalStorage();
-    console.log(validacionesDatosPersonales());
     if (validacionesDatosPersonales()){
         datos.forEach( input => {
             if (input.value != "" && input.value !=usuario.devolverAtributo(input.id)){
@@ -110,7 +105,7 @@ function pintarGrafica () {
         labels: labels,
         datasets: [{
           label: 'My First dataset',
-          backgroundColor: ["#fff",'#2e2e5c'],
+          backgroundColor: ["#fff",'#00629c'],
           data: [noPoints, points,],
         }]
       };
@@ -143,12 +138,86 @@ function openContent(evt, id) {
     document.getElementById(id).style.display = "block";
     evt.currentTarget.className += " active";
   }
- 
 
-  mostrarDatos();
-  pintarGrafica();
-  document.querySelectorAll(".text-muted").forEach(input => {
-        input.style.display="none";
-  })
+function buscarCompras(compras,usuario){
+   return compras.filter(compra => { return compra.usuario == usuario.email });
+}
+
+function mostrarHistorialCompra(){
+    var compras = JSON.parse(localStorage.getItem("compras"));
+    var comprasUsuario = buscarCompras(compras,usuario.email); 
+    comprasUsuario.forEach(element => {
+        let numeroReserva = element.numReserva;
+        let fechReserva = element.fechaReserva;
+        let pasajes = element.pasajeros;
+        console.log(element.vuelo);
+        let infoVuelos = [];
+        for (let i = 0; i < pasajes.length; i++) {
+            if (infoVuelos.length == 0) {
+                infoVuelos.push(pasajes[i].vuelo);
+                infoVuelos.push(pasajes[i].pasajero);
+            } else {
+                infoVuelos.push(pasajes[i].pasajero);
+            }
+            console.log(infoVuelos.length);
+        }
+        let pagado = element.totalPagado;
+        let printReserva = `No. reserva: ${numeroReserva}`;
+        let printFechaReserva = `Comprado el ${fechReserva}`;
+        let printPagado = `Total compra: ${pagado} €`;
+        let printVuelo = `Número de vuelo: ${infoVuelos[0]}`
+        let container = document.createElement('div');
+        container.setAttribute('class', 'container card');
+        var documentFragment = document.createDocumentFragment();
+        documentFragment.appendChild(container);
+        let row1 = document.createElement('div');
+        row1.setAttribute('class', 'row')
+        let col1 = document.createElement('div');
+        col1.setAttribute('class', 'col');
+        let contenidoCol1 = document.createTextNode(printReserva);
+        col1.appendChild(contenidoCol1);
+        let col2 = document.createElement('div');
+        col2.setAttribute('class', 'col right');
+        let contenidoCol2 = document.createTextNode(printFechaReserva);
+        col2.appendChild(contenidoCol2);
+        let row2 = document.createElement('div');
+        row2.setAttribute('class', 'row');
+        let col3 = document.createElement('p');
+        col3.setAttribute('class', 'col');
+        let contenidoCol3 = document.createTextNode(printVuelo);
+        col3.appendChild(contenidoCol3);
+        for (let i = 1; i < infoVuelos.length; i++) {
+            console.log(infoVuelos[i])
+            let contenidoCol3b = document.createTextNode(infoVuelos[i]);
+            let parrafo = document.createElement('p');
+            parrafo.appendChild(contenidoCol3b);
+            col3.appendChild(parrafo);
+        }
+        let row3 = document.createElement('div');
+        row3.setAttribute('class', 'row');
+        let col4 = document.createElement('div');
+        col4.setAttribute('class', 'col right');
+        let contenidoCol4 = document.createTextNode(printPagado);
+        col4.appendChild(contenidoCol4);
+        var documentFragment2 = document.createDocumentFragment();
+        documentFragment2.appendChild(row1);
+        row1.appendChild(col1);
+        row1.appendChild(col2);
+        row2.appendChild(col3);
+        row3.appendChild(col4);
+        container.appendChild(row1);
+        container.appendChild(row2);
+        container.appendChild(row3);
+        document.getElementById("historial").appendChild(container);
+    });
+}
+
+
+mostrarDatos();
+pintarGrafica();
+mostrarHistorialCompra();
+document.querySelectorAll(".text-muted").forEach(input => {
+    input.style.display="none";
+})
 
 
