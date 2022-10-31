@@ -98,17 +98,21 @@ function actualizarNav(){
 //Iniciar sesión consiste en guardar un objeto de la clase sesion en el localStorage con 
 //el estado = open y usuario = al usuario que se haya logueado
 function iniciarSesion(from){
-    // var email = document.getElementById("email-sesion-input").value;
-    // var password = document.getElementById("password-sesion-input").value;
-    var email = "elena@gmail.com";
-    var password = "password";
+    document.querySelectorAll(".alert-warning").forEach(elem=>elem.style.display="none");
+    if (from == "reserva"){
+        var email = document.getElementById("email-input").value;
+        var password = document.getElementById("password-input").value;
+    }else{
+        var email = document.getElementById("email-sesion-input").value;
+        var password = document.getElementById("password-sesion-input").value;
+    }
 
     var usuarios = usuariosFromLocalStorage();
-
     var usuarioJSON = usuarios.existeUsuario(email);
-    var usuario = new Usuario();
-    usuario = usuario.fromJsonToUsuario(usuarioJSON);
-    if (usuario){
+
+    if (usuarioJSON){
+        var usuario = new Usuario();
+        usuario = usuario.fromJsonToUsuario(usuarioJSON);
         if (usuario.comprobarPassword(password)){
            var sesion = new Sesion("open", usuario);
            sesion.guardarSesion();
@@ -117,15 +121,13 @@ function iniciarSesion(from){
            }else{
             actualizarNav();
             document.getElementById("close-ini-sesion").click();
-           }
-           
+           }   
         }else{
-            var mensaje = "Login incorrecto";
-            mostrarMensaje(mensaje);
+            document.getElementById("wrong-login-alert").style.display="";
+            
         }
     }else{
-        var mensaje = "No existe cuenta creada con ese email";
-        mostrarMensaje(mensaje);
+        document.getElementById("no-exist-account-alert").style.display="";
     }
 }
 

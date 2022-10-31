@@ -1,4 +1,5 @@
 function realizaReserva(vuelo) {
+    
     var reserva = new Reserva(vuelo);
     localStorage.setItem('reservaActual', JSON.stringify(reserva));
 }

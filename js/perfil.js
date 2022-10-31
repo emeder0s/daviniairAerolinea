@@ -10,7 +10,18 @@ function mostrarDatos(){
     var usuario = usuarioFromSesion(sesion);
     var inputs = document.querySelectorAll(".info-personal-input");
     inputs.forEach(input => {
-        document.querySelector(`#${input.id}`).value = usuario.devolverAtributo(input.id);
+        if (input.id == "fechaNac"){
+            var date = usuario.devolverAtributo(input.id);
+            // var date2 = date;
+            // var año = date.substring(6,9);
+            // var mes = date.substring(3,5);
+            // var dia = date.substring(0,2);
+            // date = `${año}${mes}${dia}`;
+            // console.log(date2);
+            document.querySelector(`#${input.id}`).value = date;
+        }else{
+            document.querySelector(`#${input.id}`).value = usuario.devolverAtributo(input.id);
+        }
     })
 }
 
@@ -30,17 +41,23 @@ function guardarDatos(){
     var datos = document.querySelectorAll(".info-personal-input");
     var usuario = usuarioFromSesion(sesion);
     var usuarios = usuariosFromLocalStorage();
-    datos.forEach( input => {
-        if (input.value != "" && input.value !=usuario.devolverAtributo(input.id)){
-            //guardar los cambios del usuarios atributo por atributo
-            usuario.guardarAtributo(input.id, input.value);
-        }
-    });
+    console.log(validacionesDatosPersonales());
+    if (validacionesDatosPersonales()){
+        datos.forEach( input => {
+            if (input.value != "" && input.value !=usuario.devolverAtributo(input.id)){
+                //guardar los cambios del usuarios atributo por atributo
+                usuario.guardarAtributo(input.id, input.value);
+            }
+        });
+        document.location.reload(true);
+    }
 
     guardarDatosEnLocalStorage(usuarios,usuario,sesion,"personales");
 }
 
 function guardarContraseña(){
+    document.querySelectorAll(".alert-warning").forEach(elem=>elem.style.display="none");
+    document.getElementById("nuevaPasswordHelp").style.display="none";
     var sesion = sesionFromLocalStorage();
     var usuario = usuarioFromSesion(sesion);
     var usuarios = usuariosFromLocalStorage();
@@ -48,14 +65,17 @@ function guardarContraseña(){
     var contraseñaActual = document.querySelector("#password.pass-input").value;
     if (usuario.comprobarPassword(contraseñaActual)){
         if (usuario.comprobarPassword(contraseñaNueva)){
-            var mensaje = "La contraseña nueva no puede ser igual a la anterior";
-            mostrarMensaje(mensaje);
+            document.getElementById("same-password-alert").style.display="";
         }else{
-            usuario.pass = contraseñaNueva;
-            guardarDatosEnLocalStorage(usuarios,usuario,sesion,"password");
+            if(validacionPassword(contraseñaNueva)){
+                usuario.pass = contraseñaNueva;
+                guardarDatosEnLocalStorage(usuarios,usuario,sesion,"password");
+            }else{
+                document.getElementById("nuevaPasswordHelp").style.display="";
+            }    
         }
     }else{
-        mostrarMensaje("La contraseña actual no coincide");
+        document.getElementById("wrong-password-alert").style.display="";
     }
 }
 
@@ -126,5 +146,9 @@ function openContent(evt, id) {
  
 
   mostrarDatos();
+  pintarGrafica();
+  document.querySelectorAll(".text-muted").forEach(input => {
+        input.style.display="none";
+  })
 
 

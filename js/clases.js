@@ -65,7 +65,7 @@ class Usuario {
                 
                 valor = this.nom;
                 break;
-            case "apellido":
+            case "apellidos":
                 valor = this.ape;
                 break;
             case "dni":
@@ -99,7 +99,7 @@ class Usuario {
             case "nombre":
                 this.nom = valor;
                 break;
-            case "apellido":
+            case "apellidos":
                 this.ape = valor;
                 break;
             case "dni":
