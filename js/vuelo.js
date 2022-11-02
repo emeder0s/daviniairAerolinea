@@ -1,8 +1,5 @@
 function buscarVuelos() {
     var fechaBusqueda = document.getElementById("fecha").value //Ya tenemos recogida la fecha.
-    if (fechaBusqueda[8] == 0){
-        fechaBusqueda = fechaBusqueda.substr(0, fechaBusqueda.length - 2)+fechaBusqueda[9];
-    }
     var destinoBusqueda = document.getElementsByTagName('select')[0].value//el destino que marca el usuario.
     var pasajerosBusqueda = parseInt(document.getElementById("pasajeros").value)//numero de asisentos elegidos por el usuario.
     var datosVuelos = JSON.parse(localStorage.getItem("vuelos"))// creamos en una nueva variable los datos en un array que tenenmos metidos en localstorage.

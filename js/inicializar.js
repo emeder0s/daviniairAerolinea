@@ -2,13 +2,18 @@
 //Generamos 30 fechas disponibles.
 function genera30fechas() {
     var hoy = new Date(Date.now());
-    var fin = hoy * 1 + 30 * 24 * 3600 * 1000;
+    var fin = hoy * 1 + 90 * 24 * 3600 * 1000;
     var unDia = 24 * 3600 * 1000;
     var fecha;
     var fechas = [];
     for (let ms = hoy * 1; ms < fin * 1; ms += unDia) {
-        fecha = new Date(ms)
-        fechas.push(`${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`);
+        fecha = new Date(ms);
+        var day = null;
+        var month = fecha.getMonth() + 1;
+        fecha.getDate()/10 < 1 ? day = 0+fecha.getDate().toString() : day = fecha.getDate();
+        month/10 < 1 ? month = 0+month.toString() : month = month;
+        console.log(`${fecha.getFullYear()}-${month}-${day}`);
+        fechas.push(`${fecha.getFullYear()}-${month}-${day}`);
     }
     return fechas;
 
@@ -27,20 +32,20 @@ function generaId() {
 
 /*3 vuelos diarios a paris*/
 function generaVuelosParis(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '8:00', '10:00', 30, 70,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '08:00', '10:00', 30, 70,  generarNumVuelo()));
     arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '13:00', '15:10', 30, 95,  generarNumVuelo()));
     arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '19:00', '21:05', 30, 120,  generarNumVuelo()));
 }
 
 /*2 vuelos diarios a Edimburgo*/
 function generaVuelosEdimburgo(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '9:00', '14:30', 30, 90,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '09:00', '14:30', 30, 90,  generarNumVuelo()));
     arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '14:00', '19:15', 30, 120,  generarNumVuelo()));
 }
 
 /*1 vuelo diarios a Ciudad de Mexico*/
 function generaVuelosMexico(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Ciudad de Mexico', fecha, '13:00', '6:20', 30, 350,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Ciudad de Mexico', fecha, '13:00', '06:20', 30, 350,  generarNumVuelo()));
 }
 
 function generaVuelos30dias() {
@@ -80,10 +85,9 @@ function iniciaCompras(){
     compra.numReserva = "DVN92285246612";
     compra.fechaReserva = "2022-10-31";
     compra.usuario = "elena@gmail.com"
-    compra.pasajeros = [{nombre: "elena", apellidos: "mederos", dni: "elena@gmail.com"}];
-    compra.vuelo = {asientosLibres:30,destino:"Edimburgo", fecha:"2022-11-1", hora:"9:00", horallegada:"14:30", id:11, origen:"Madrid", precio:90};
+    compra.pasajeros = [{nombre: "elena", apellidos: "mederos", dni: "54058798N"}];
+    compra.vuelo = {asientosLibres:30, destino:"Edimburgo", fecha:"2022-11-01", hora:"09:00", horallegada:"14:30", id:11, origen:"Madrid", precio:90, numVuelo:"DV0923"};
     compra.totalPagado = 90;
-
     compras.push(compra)
     
     localStorage.setItem("compras",JSON.stringify(compras));

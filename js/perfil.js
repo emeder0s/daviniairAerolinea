@@ -140,7 +140,15 @@ function openContent(evt, id) {
   }
 
 function buscarCompras(compras,usuario){
-   return compras.filter(compra => { return compra.usuario == usuario.email });
+   return compras.filter(compra => { return compra.usuario == usuario });
+}
+
+function comprobarCheckin(vuelo){
+    var fechaString = `${vuelo.fecha}T${vuelo.hora}:00`;
+    var flightDate = new Date(fechaString).getTime();
+    var currentDate = new Date().getTime();
+    var diff = Math.abs(flightDate-currentDate) / 1000 / 60 / 60;
+    return diff <= 48;
 }
 
 function mostrarHistorialCompra(){
@@ -149,23 +157,12 @@ function mostrarHistorialCompra(){
     comprasUsuario.forEach(element => {
         let numeroReserva = element.numReserva;
         let fechReserva = element.fechaReserva;
-        let pasajes = element.pasajeros;
-        console.log(element.vuelo);
-        let infoVuelos = [];
-        for (let i = 0; i < pasajes.length; i++) {
-            if (infoVuelos.length == 0) {
-                infoVuelos.push(pasajes[i].vuelo);
-                infoVuelos.push(pasajes[i].pasajero);
-            } else {
-                infoVuelos.push(pasajes[i].pasajero);
-            }
-            console.log(infoVuelos.length);
-        }
+        let infoVuelos = element.pasajeros;
         let pagado = element.totalPagado;
         let printReserva = `No. reserva: ${numeroReserva}`;
         let printFechaReserva = `Comprado el ${fechReserva}`;
         let printPagado = `Total compra: ${pagado} €`;
-        let printVuelo = `Número de vuelo: ${infoVuelos[0]}`
+        let printVuelo = `${element.vuelo.numVuelo} | ORIGEN: ${element.vuelo.origen} | DESTINO:${element.vuelo.destino} | FECHA: ${element.vuelo.fecha} | HORA: ${element.vuelo.hora}h`;
         let container = document.createElement('div');
         container.setAttribute('class', 'container card');
         var documentFragment = document.createDocumentFragment();
@@ -173,30 +170,44 @@ function mostrarHistorialCompra(){
         let row1 = document.createElement('div');
         row1.setAttribute('class', 'row')
         let col1 = document.createElement('div');
-        col1.setAttribute('class', 'col');
+        col1.setAttribute('class', 'col num-reserva');
         let contenidoCol1 = document.createTextNode(printReserva);
         col1.appendChild(contenidoCol1);
         let col2 = document.createElement('div');
         col2.setAttribute('class', 'col right');
         let contenidoCol2 = document.createTextNode(printFechaReserva);
         col2.appendChild(contenidoCol2);
+        if (comprobarCheckin(element.vuelo)){
+            let checking = document.createTextNode("Check In disponible");
+            let pChecking = document.createElement('p');
+            pChecking.setAttribute("class","checkin");
+            pChecking.appendChild(checking);
+            col2.appendChild(pChecking);
+        }
         let row2 = document.createElement('div');
         row2.setAttribute('class', 'row');
         let col3 = document.createElement('p');
-        col3.setAttribute('class', 'col');
+        col3.setAttribute('class', 'col vuelo');
         let contenidoCol3 = document.createTextNode(printVuelo);
         col3.appendChild(contenidoCol3);
-        for (let i = 1; i < infoVuelos.length; i++) {
-            console.log(infoVuelos[i])
-            let contenidoCol3b = document.createTextNode(infoVuelos[i]);
-            let parrafo = document.createElement('p');
-            parrafo.appendChild(contenidoCol3b);
-            col3.appendChild(parrafo);
+        let titlePasajeros = document.createTextNode('Pasajeros:');
+        let parrafo = document.createElement('p');
+        parrafo.setAttribute("class","p-pasajeros")
+        parrafo.appendChild(titlePasajeros);
+        col3.appendChild(parrafo);
+        let listaPasajeros = document.createElement("ul");
+        col3.appendChild(listaPasajeros);
+        for (let i = 0; i < infoVuelos.length; i++) {
+            let contenidoCol3b = document.createTextNode(`${infoVuelos[i].nombre} ${infoVuelos[i].apellidos} - ${infoVuelos[i].dni}`);
+            let pasajero = document.createElement('li');
+            pasajero.appendChild(contenidoCol3b);
+            listaPasajeros.appendChild(pasajero);
         }
+       
         let row3 = document.createElement('div');
         row3.setAttribute('class', 'row');
         let col4 = document.createElement('div');
-        col4.setAttribute('class', 'col right');
+        col4.setAttribute('class', 'col right total-precio');
         let contenidoCol4 = document.createTextNode(printPagado);
         col4.appendChild(contenidoCol4);
         var documentFragment2 = document.createDocumentFragment();

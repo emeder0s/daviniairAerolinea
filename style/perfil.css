@@ -108,3 +108,36 @@ div#div-fechaNac{
   margin-top: 14px;
 }
 
+.p-pasajeros{
+  margin:0px;
+}
+
+.card {
+  background: #00629c;
+  color: white;
+  padding: 10px;
+  box-shadow: 1px 1px 3px black;
+  margin:10px;
+}
+
+.card ul {
+  padding-left: 30px;
+}
+
+.right{
+  text-align: right;
+}
+
+.total-precio, .num-reserva{
+  font-size: 20px;
+}
+
+.vuelo {
+  font-size: 15px;
+}
+
+.checkin {
+  background: green;
+}
+
+
