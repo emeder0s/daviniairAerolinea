@@ -72,8 +72,8 @@ function iniciaUsuarios(){
     var usuarios = new Usuarios();
     var user = new Usuario("elena","mederos","54058798N","18-02-1991","elena@gmail.com","+34","686246095", "password",300,["DVN92285246612"]);
     var user2 = new Usuario("ana","mederos","54058799J","18-02-1991","ana@gmail.com","+34","686246095", "password",200,[]);
-    usuarios.añadirUsuario(user2);
-    usuarios.añadirUsuario(user);
+    usuarios.aniadirUsuario(user2);
+    usuarios.aniadirUsuario(user);
     // Quería usar el usuarios.guardarUSuarios(), pero si lo usaba no me debaja iniciar sesión.. por qué? No lo he descubierto
     localStorage.setItem("usuarios", JSON.stringify(usuarios))
 }
@@ -93,7 +93,12 @@ function iniciaCompras(){
     localStorage.setItem("compras",JSON.stringify(compras));
 }
 
-//funcion que inicializa los usuarios y los vuelos
+function iniciaMetodosPago(){
+    var metodosPago = [];
+    localStorage.setItem("metodosPago",JSON.stringify(metodosPago));
+}
+
+//funcion que inicializa los usuarios, los vuelos, las compras...
 function inicializar(){
     if (!localStorage.getItem("vuelos")){
         iniciaVuelos();
@@ -105,6 +110,10 @@ function inicializar(){
 
     if(!localStorage.getItem("compras")){
         iniciaCompras();
+    }
+
+    if(!localStorage.getItem("metodosPago")){
+        iniciaMetodosPago();
     }
 }
 

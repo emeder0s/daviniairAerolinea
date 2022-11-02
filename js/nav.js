@@ -141,7 +141,7 @@ function registrarse(){
     var usuarios = usuariosFromLocalStorage();
 
     if(usuarios.existeUsuario(document.getElementById("r-email-input").value)== null){
-        usuarios.añadirUsuario(usuario);
+        usuarios.aniadirUsuario(usuario);
         usuarios.guardarUsuarios();
         var sesion = new Sesion("open", usuario);
         sesion.guardarSesion();

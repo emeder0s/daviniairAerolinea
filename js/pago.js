@@ -12,18 +12,18 @@ function getCompra(reserva,usuario){
     return compra;
 }
 
-function añadirCompra(compra){
+function aniadirCompra(compra){
     var compras = JSON.parse(localStorage.getItem("compras"));
     compras.push(compra)
     localStorage.setItem("compras", JSON.stringify(compras));
 }
 
-function añadirCompraAUsuario(reserva){
+function aniadirCompraAUsuario(reserva){
     var sesion = sesionFromLocalStorage();
     var usuario = usuarioFromSesion(sesion);
     var usuarios = usuariosFromLocalStorage();
     var compra = getCompra(reserva,usuario);
-    añadirCompra(compra);
+    aniadirCompra(compra);
     usuario.historialCompra.push(compra.numReserva);
     usuario.points += 100;
     usuarios.modificarDatosPersonales(usuario, usuarios.buscarUsuario(usuario))
@@ -54,7 +54,7 @@ function confirmarPago() {
             'cvv': cvv
         });
         localStorage.setItem('reservaActual', JSON.stringify(reserva));
-        añadirCompraAUsuario(reserva);
+        aniadirCompraAUsuario(reserva);
         //restarAsientosVuelos(reserva.pasajeros);
         window.location = 'resumen.html';
     } else {

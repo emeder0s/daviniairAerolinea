@@ -223,10 +223,57 @@ function mostrarHistorialCompra(){
     });
 }
 
+function aniadirMetodo(){
+    document.getElementById("container-aniadirMetodo").style.display="";
+    document.getElementById("button-aniadir").style.display="none";
+}
+
+function guardarMetodoPago(){
+    var nombre = document.getElementById("m-nombre").value;
+    var numTar =document.getElementById("m-numTar").value;
+    var fechaExp = document.getElementById("m-fechaExp").value;
+    var cvv = document.getElementById("m-cvv").value;
+
+    var metodo = new MetodoPago(nombre,numTar,fechaExp,cvv,usuario.email);
+    var metodos = JSON.parse(localStorage.getItem("metodosPago"));
+    metodos.push(metodo);
+    localStorage.setItem("metodosPago",JSON.stringify(metodos));
+
+    document.getElementById("button-aniadir").style.display="";
+    document.getElementById("container-aniadirMetodo").style.display="none";
+    mostrarMetodosPago();
+}
+
+function buscarMetodos(metodos,usuario){
+    return metodos.filter(metodo => { return metodo.usuario == usuario });
+ }
+
+ function sacarTarjeta(num){
+    return "Tarjeta ************" + num.substring(11,15);
+ }
+
+function mostrarMetodosPago(){
+    var metodos = JSON.parse(localStorage.getItem("metodosPago"));
+    var metodosUsuario = buscarCompras(metodos,usuario.email);
+    if (metodosUsuario){
+        metodosUsuario.forEach(metodo => {
+            var tarjeta = document.createTextNode(sacarTarjeta(metodo.numTarjeta));
+            var container = document.createElement("div");
+            // var spanBorrar = document.createElement("span");
+            // spanBorrar.appendChild(document.createTextNode("Borrar"));
+            // spanBorrar.setAttribute("style","text-align:right");
+            container.setAttribute("class","alert alert-primary");
+            container.setAttribute("role","alert");
+            container.appendChild(tarjeta);
+            document.getElementById("container-mostrar-metodo").appendChild(container);
+        });
+    } 
+}
 
 mostrarDatos();
 pintarGrafica();
 mostrarHistorialCompra();
+mostrarMetodosPago();
 document.querySelectorAll(".text-muted").forEach(input => {
     input.style.display="none";
 })

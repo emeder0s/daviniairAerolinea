@@ -27,6 +27,18 @@ class Compra {
     }
 }
 
+class MetodoPago {
+    constructor(nombre,numTarjeta,fechaExp,cvv,usuario){
+        this.nombre=nombre;
+        this.numTarjeta=numTarjeta;
+        this.fechaExp=fechaExp;
+        this.cvv=cvv;
+        this.usuario = usuario;
+    }
+
+    guardarMetodo
+}
+
 // Clas Usuario
 class Usuario {
     constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points,historialCompra){
@@ -42,8 +54,7 @@ class Usuario {
         this.historialCompra = historialCompra;
     }
 
-    //Añade un usuario
-    añadirCompra(compra){
+    aniadirCompra(compra){
         this.historialCompra.push(compra);
     }
     
@@ -150,7 +161,7 @@ class Usuarios{
     }
     
     //Añade un usuario
-    añadirUsuario(usuario){
+    aniadirUsuario(usuario){
         this.usuarios.push(usuario);
     }
 
