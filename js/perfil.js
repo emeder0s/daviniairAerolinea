@@ -138,10 +138,6 @@ function openContent(evt, id) {
     evt.currentTarget.className += " active";
   }
 
-function buscarCompras(compras,usuario){
-   return compras.filter(compra => { return compra.usuario == usuario });
-}
-
 function comprobarCheckin(vuelo){
     var fechaString = `${vuelo.fecha}T${vuelo.hora}:00`;
     var flightDate = new Date(fechaString).getTime();

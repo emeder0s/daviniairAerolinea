@@ -15,10 +15,7 @@ function desplegarHistorial() {
         let numeroReserva = element.numReserva;
         let fechReserva = element.fechaReserva;
         let pasajes = element.numPasajes;
-        // console.table(pasajes);
-        // console.log(pasajes);
         let infoVuelos = [];
-        // console.log(infoVuelos.length);
         for (let i = 0; i < pasajes.length; i++) {
 
             if (infoVuelos.length == 0) {
@@ -27,7 +24,6 @@ function desplegarHistorial() {
             } else {
                 infoVuelos.push(pasajes[i].Pasajero);
             }
-            console.log(infoVuelos.length);
         }
         let pagado = element.totalPagado;
         let printReserva = `No. reserva: ${numeroReserva}`;
@@ -55,7 +51,6 @@ function desplegarHistorial() {
         let contenidoCol3 = document.createTextNode(printVuelo);
         col3.appendChild(contenidoCol3);
         for (let i = 1; i < infoVuelos.length; i++) {
-            console.log(infoVuelos[i])
             let contenidoCol3b = document.createTextNode(infoVuelos[i]);
             let parrafo = document.createElement('p');
             parrafo.appendChild(contenidoCol3b);

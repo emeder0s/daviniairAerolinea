@@ -3,7 +3,7 @@ function buscarVuelos() {
     var destinoBusqueda = document.getElementsByTagName('select')[0].value//el destino que marca el usuario.
     var pasajerosBusqueda = parseInt(document.getElementById("pasajeros").value)//numero de asisentos elegidos por el usuario.
     var datosVuelos = JSON.parse(localStorage.getItem("vuelos"))// creamos en una nueva variable los datos en un array que tenenmos metidos en localstorage.
-    var vuelosEncontrados = datosVuelos.filter(vuelo => vuelo.destino == destinoBusqueda && vuelo.fecha == fechaBusqueda && pasajerosBusqueda <= vuelo.asientosLibres) //Hasta aquí tenemos la coincidencia de la búsqueda con la base de datos.
+    var vuelosEncontrados = datosVuelos.filter(vuelo => vuelo.destino == destinoBusqueda && vuelo.fecha == fechaBusqueda && pasajerosBusqueda <= vuelo.asientosLibres) //Hasta aquí tenemos la coincidencia de la búsqueda con la base de datos.  
     pintarVuelos(vuelosEncontrados);
 }
 

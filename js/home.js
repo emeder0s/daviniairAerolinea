@@ -52,7 +52,13 @@ function editarBusqueda() {
     vuelos.parentNode.removeChild(vuelos);
 }
 
+function buscarCompras(compras,usuario){
+    return compras.filter(compra => { return compra.usuario == usuario });
+ }
+
 //No permitimos que se puedan seleccionar vuelos pasados a la fecha actual
 document.getElementById("fecha").min = new Date().toISOString().split("T")[0];
+
+
 
 generarNumVuelo()

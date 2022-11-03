@@ -1,10 +1,38 @@
 (function divsPasajeros() {
-    var numPasajeros = JSON.parse(localStorage.getItem('numPasajerosReservaActual'));
-    for (let i = 0; i < numPasajeros; i++) {
-        creaDiv(i);
+    var sesion = sesionFromLocalStorage();
+    if (sesion){
+        var numPasajeros = JSON.parse(localStorage.getItem('numPasajerosReservaActual'));
+        var usuario = usuarioFromSesion(sesion);
+        if (comprobarSicompra(usuario)){
+            for (let i = 0; i < numPasajeros; i++) {
+                creaDiv(i);
+            }
+            pintaPrecioTotal();
+        }else{
+            document.getElementById("no-compra-alert").style.display="";
+        }        
+    } else{
+            for (let i = 0; i < numPasajeros; i++) {
+                creaDiv(i);
+            }
+            pintaPrecioTotal();
     }
-    pintaPrecioTotal();
 })();
+
+function comprobarSicompra(usuario){
+    var compras = JSON.parse(localStorage.getItem("compras"));
+    var reservaActual = JSON.parse(localStorage.getItem("reservaActual"));
+    var numVuelo = reservaActual.vuelo.numVuelo;
+    var comprasUsuario = buscarCompras(compras,usuario.email); 
+    var vuelos = comprasUsuario.filter(compra => compra.vuelo.numVuelo ==numVuelo);
+    var totalPasajeros = parseInt(localStorage.getItem("numPasajerosReservaActual"));
+    if (vuelos){
+        vuelos.forEach(vuelo => {
+            totalPasajeros += vuelo.pasajeros.length
+        });
+    } 
+    return totalPasajeros <= 10;
+}
 
 function creaDiv(i) {
     var div1 = document.createElement('div');
