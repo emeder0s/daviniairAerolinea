@@ -194,4 +194,10 @@ p.origen-destino-large{
     color: white;
 }
 
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 

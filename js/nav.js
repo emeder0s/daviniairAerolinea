@@ -16,11 +16,15 @@ function navMenu(nav,sesion){
 
     //la lista de enlaces
     var elementsRight = document.createElement("ul");
-    elementsRight.setAttribute("style","display:inline; margin: 10px;")
+    elementsRight.setAttribute("class","navbar-nav");
+    elementsRight.setAttribute("style","display: flex;flex-direction: row;align-items: center; margin: 10px;")
+
+    
     
     //Iniciar sesion/Registro - modal button
     var iniSesionButtonLi = document.createElement("li");
-    iniSesionButtonLi.setAttribute("style","display:inline;");
+    iniSesionButtonLi.setAttribute("class","nav-item");
+    //iniSesionButtonLi.setAttribute("style","display:inline;");
     
     if (!sesion){
         var iniSesionButton = document.createElement("button");
@@ -34,7 +38,8 @@ function navMenu(nav,sesion){
 
         //Registro 
         var enlaceRegistroLi = document.createElement("li");
-        enlaceRegistroLi.setAttribute("style","display:inline;margin-right:20px")
+        enlaceRegistroLi.setAttribute("class","nav-item");
+        enlaceRegistroLi.setAttribute("style","margin-right:20px")
         var enlaceRegistro = document.createElement('a');
         enlaceRegistro.setAttribute('href', '');
         enlaceRegistro.setAttribute("data-toggle","modal");
@@ -43,8 +48,10 @@ function navMenu(nav,sesion){
         enlaceRegistroLi.appendChild(enlaceRegistro);
     }else{        
         var enlaceRegistroLi = null;
+        iniSesionButtonLi.setAttribute("class","nav-item dropdown");
         var dropdownMenuDiv = document.createElement("div");
         dropdownMenuDiv.setAttribute("class","dropdown-menu");
+        dropdownMenuDiv.setAttribute("style","position: absolute;")
         dropdownMenuDiv.setAttribute("aria-labelledby","dropdownMenuLink");
         dropdownMenuDiv.innerHTML='<a class="dropdown-item" href="perfil.html">Mi cuenta</a><a class="dropdown-item" href="" onclick="cerrarSesion();">Cerrar Sesion</a>';
         var enlaceUser = document.createElement('a');
@@ -72,7 +79,8 @@ function navMenu(nav,sesion){
 
     //checkIn
     var checkInLi = document.createElement("li");
-    checkInLi.setAttribute("style","display:inline;margin-right:20px")
+    checkInLi.setAttribute("class","nav-item");
+    checkInLi.setAttribute("style","margin-right:20px")
     var checkIn = document.createElement('a');
     checkIn.setAttribute('href', 'registro.html');
     checkIn.innerHTML="Check In";

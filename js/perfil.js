@@ -104,8 +104,7 @@ function pintarGrafica () {
       const data = {
         labels: labels,
         datasets: [{
-          label: 'My First dataset',
-          backgroundColor: ["#fff",'#00629c'],
+          backgroundColor: ["#94a4ae",'#00629c',],
           data: [noPoints, points,],
         }]
       };

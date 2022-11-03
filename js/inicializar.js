@@ -1,5 +1,5 @@
 // ---------------INICIALIZACION DE LOS VUELOS---------------------------
-//Generamos 30 fechas disponibles.
+//Generamos fechas disponibles.
 function genera30fechas() {
     var hoy = new Date(Date.now());
     var fin = hoy * 1 + 90 * 24 * 3600 * 1000;
@@ -12,13 +12,13 @@ function genera30fechas() {
         var month = fecha.getMonth() + 1;
         fecha.getDate()/10 < 1 ? day = 0+fecha.getDate().toString() : day = fecha.getDate();
         month/10 < 1 ? month = 0+month.toString() : month = month;
-        console.log(`${fecha.getFullYear()}-${month}-${day}`);
         fechas.push(`${fecha.getFullYear()}-${month}-${day}`);
     }
     return fechas;
 
 }
 
+//Genera un número de vuelo aleatorio
 function generarNumVuelo(){
     var num = parseInt(Math.random()*10000)
     return "DV"+ num.toString();
@@ -48,6 +48,7 @@ function generaVuelosMexico(fecha) {
     arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Ciudad de Mexico', fecha, '13:00', '06:20', 30, 350,  generarNumVuelo()));
 }
 
+//Genera las fechas de vuelo y los vuelos diferentes vuelos
 function generaVuelos30dias() {
     var fechas = genera30fechas();
     for (let i = 0; i < fechas.length; i++) {
@@ -58,20 +59,21 @@ function generaVuelos30dias() {
     }
 }
 
-//hacemos un array con 180 vuelos en total (6 vuelos diarios por 30 días)
+//Hacemos un array con 180 vuelos en total (6 vuelos diarios por 30 días)
 var arrayVuelo = [];
 var idActual = 0;
 
+//Inicializa los vuelos y los guarda en el localStorage
 function iniciaVuelos() {
-        generaVuelos30dias();
-        localStorage.setItem("vuelos", JSON.stringify(arrayVuelo));
+    generaVuelos30dias();
+    localStorage.setItem("vuelos", JSON.stringify(arrayVuelo));
 }
 
 // ---------------INICIALIZACION DE LOS USUARIOS---------------------------
 function iniciaUsuarios(){
     var usuarios = new Usuarios();
-    var user = new Usuario("elena","mederos","54058798N","18-02-1991","elena@gmail.com","+34","686246095", "password",300,["DVN92285246612"]);
-    var user2 = new Usuario("ana","mederos","54058799J","18-02-1991","ana@gmail.com","+34","686246095", "password",200,[]);
+    var user = new Usuario("elena","mederos","54058798N","1991-02-18","elena@gmail.com","+34","686246095", "password",6000,["DVN92285246612"]);
+    var user2 = new Usuario("ana","mederos","54058799J","1991-02-18","ana@gmail.com","+34","686246095", "password",200,[]);
     usuarios.aniadirUsuario(user2);
     usuarios.aniadirUsuario(user);
     // Quería usar el usuarios.guardarUSuarios(), pero si lo usaba no me debaja iniciar sesión.. por qué? No lo he descubierto
@@ -93,6 +95,7 @@ function iniciaCompras(){
     localStorage.setItem("compras",JSON.stringify(compras));
 }
 
+// ---------------INICIALIZACION DE LOS METODOS DE PAGO ---------------------------
 function iniciaMetodosPago(){
     var metodosPago = [];
     localStorage.setItem("metodosPago",JSON.stringify(metodosPago));
@@ -117,4 +120,4 @@ function inicializar(){
     }
 }
 
-inicializar()
+inicializar();
