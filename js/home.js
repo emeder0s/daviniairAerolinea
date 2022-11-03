@@ -32,7 +32,6 @@ function encogerBusqueda() {
         divEditarBusqueda.appendChild(editarBusqueda);
 
         document.getElementsByClassName('contenedor')[0].appendChild(div);
-        
 
         div.appendChild(divOrigenDestino);
         div.appendChild(divFecha);
@@ -40,14 +39,15 @@ function encogerBusqueda() {
         div.appendChild(editarBusqueda);
     } else {
         divs[1].style.display = 'flex';
-        divs[1].getElementsByTagName('p')[0].innerHTML = `MAD → ${destino} |  Fecha: ${fecha} | Número de pasajeros: ${numPasajeros}`;
+        divs[1].getElementsByTagName('p')[0].innerHTML = `Madrid → ${destino} |  Fecha: ${fecha} | Número de pasajeros: ${numPasajeros}`;
     }
 
 }
 
+
 function editarBusqueda() {
     document.getElementsByClassName('busqueda')[0].style.display = 'flex';
-    document.getElementsByClassName('busqueda2')[0].style.display = 'none';
+    document.getElementsByClassName('busqueda2')[0].remove();
     var vuelos = document.getElementById('vuelos');
     vuelos.parentNode.removeChild(vuelos);
 }

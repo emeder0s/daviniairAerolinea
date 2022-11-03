@@ -39,8 +39,8 @@ function generaVuelosParis(fecha) {
 
 /*2 vuelos diarios a Edimburgo*/
 function generaVuelosEdimburgo(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '09:00', '14:30', 30, 90,  generarNumVuelo()));
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '14:00', '19:15', 30, 120,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '09:00', '14:30', 3, 90,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '14:00', '19:15', 5, 120,  generarNumVuelo()));
 }
 
 /*1 vuelo diarios a Ciudad de Mexico*/

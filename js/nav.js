@@ -39,7 +39,7 @@ function navMenu(nav,sesion){
         //Registro 
         var enlaceRegistroLi = document.createElement("li");
         enlaceRegistroLi.setAttribute("class","nav-item");
-        enlaceRegistroLi.setAttribute("style","margin-right:20px")
+        enlaceRegistroLi.setAttribute("style","margin-right:15px")
         var enlaceRegistro = document.createElement('a');
         enlaceRegistro.setAttribute('href', '');
         enlaceRegistro.setAttribute("data-toggle","modal");
