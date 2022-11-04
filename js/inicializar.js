@@ -15,7 +15,6 @@ function genera30fechas() {
         fechas.push(`${fecha.getFullYear()}-${month}-${day}`);
     }
     return fechas;
-
 }
 
 //Genera un número de vuelo aleatorio

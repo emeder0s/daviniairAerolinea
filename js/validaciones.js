@@ -175,3 +175,14 @@ function caracteresEspeciales(password){
 function validacionPassword(password){
     return longitudPassword(password) && mayusculas(password) && minusculas(password) && caracteresEspeciales(password)
 }
+
+function validacionesRegistro(){
+    var nombre = document.getElementById("r-nombre-input").value;
+    var apellidos = document.getElementById("r-apellidos-input").value;
+    var email = document.getElementById("r-email-input").value;
+    var password = document.getElementById("r-password-input").value;
+    var repetirPassword = document.getElementById("r-repetirPassword-input").value;
+
+    return validacionNombreoApellidos(nombre,"nombre") && validacionNombreoApellidos(apellidos,"apellidos") && validacionEmail(email) &&  validacionPassword(password) && password == repetirPassword;
+
+}
