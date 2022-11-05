@@ -29,22 +29,26 @@ function generaId() {
     return idActual;
 }
 
+function asientosLibres(){
+    return ["true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true","true"]
+}
+
 /*3 vuelos diarios a paris*/
 function generaVuelosParis(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '08:00', '10:00', 30, 70,  generarNumVuelo()));
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '13:00', '15:10', 30, 95,  generarNumVuelo()));
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '19:00', '21:05', 30, 120,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '08:00', '10:00', 30, 70,  generarNumVuelo(), asientosLibres()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '13:00', '15:10', 30, 95,  generarNumVuelo(), asientosLibres()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'París', fecha, '19:00', '21:05', 30, 120,  generarNumVuelo(), asientosLibres()));
 }
 
 /*2 vuelos diarios a Edimburgo*/
 function generaVuelosEdimburgo(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '09:00', '14:30', 3, 90,  generarNumVuelo()));
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '14:00', '19:15', 5, 120,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '09:00', '14:30', 30, 90,  generarNumVuelo(), asientosLibres()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Edimburgo', fecha, '14:00', '19:15', 30, 120,  generarNumVuelo(), asientosLibres()));
 }
 
 /*1 vuelo diarios a Ciudad de Mexico*/
 function generaVuelosMexico(fecha) {
-    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Ciudad de Mexico', fecha, '13:00', '06:20', 30, 350,  generarNumVuelo()));
+    arrayVuelo.push(new Vuelo(generaId(), 'Madrid', 'Ciudad de Mexico', fecha, '13:00', '06:20', 30, 350,  generarNumVuelo(), asientosLibres()));
 }
 
 //Genera las fechas de vuelo y los vuelos diferentes vuelos

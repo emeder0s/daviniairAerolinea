@@ -39,3 +39,16 @@
 .checkin-title{
     width: 100%;
 }
+
+#pasajeros-container{
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+#pasajeros-container div{
+    margin-bottom: 20px;
+    width: 100%;
+}

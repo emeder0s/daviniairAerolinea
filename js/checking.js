@@ -1,4 +1,16 @@
-function pintarPasajeros(pasajeros){
+function getAsientos(asientos,vuelo){
+   var asientoArray = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","10A","10B","11A","11B","12A","12B","13A","13B","14A","14B","15A","15B"];
+   vuelo.avion.forEach( (asientoLibre,index) => {
+    if (asientoLibre == "true"){
+        var option = document.createElement("option");
+        option.innerHTML=asientoArray[index];
+        asientos.appendChild(option);
+    }
+   })
+   return asientos;
+}
+
+function pintarPasajeros(pasajeros, vuelo){
     var arrayP = [];
     pasajeros.forEach((pasajero,index) => {
         var contenedorPasajeros = document.createElement("div");
@@ -28,7 +40,12 @@ function pintarPasajeros(pasajeros){
         labelAsientos.innerHTML="Selecciona asiento";
         var asientos =  document.createElement("select");
         asientos.setAttribute("class","form-control form-control-sm");
-        // getAsientos()
+        var option = document.createElement("option");
+        option.disabled = true;
+        option.selected = true;
+        option.innerHTML="Selecciona un asiento"
+        asientos.appendChild(option)
+        asientos = getAsientos(asientos,vuelo);
 
         contenedorPasajeros.appendChild(title);
         contenedorPasajeros.appendChild(labelNombre);
@@ -49,8 +66,7 @@ function comprobarCheckin(vuelo){
     var flightDate = new Date(fechaString).getTime();
     var currentDate = new Date().getTime();
     var diff = Math.abs(flightDate-currentDate) / 1000 / 60 / 60;
-    // return diff <= 48 && flightDate < currentDate;
-    return true;
+    return diff <= 48 && flightDate > currentDate;
 }
 
 function rellenarDatos(compra){
@@ -60,15 +76,44 @@ function rellenarDatos(compra){
         title = document.createElement("h3");
         title.setAttribute("class","checkin-title");
         title.innerHTML = "Check in";
+
         subtitle = document.createElement("p");
-        subtitle.innerHTML = "Revisa los datos de los pasajeros y selecciona asiento"
+        subtitle.innerHTML = "Revisa los datos de los pasajeros y selecciona asiento";
+        var vuelo = document.createElement("h5");
+        vuelo.innerHTML = `${compra.vuelo.origen} - ${compra.vuelo.destino}, ${compra.vuelo.fecha} ${compra.vuelo.hora}h`;
+
+        var alert1 = document.createElement("div");
+        alert1.setAttribute("class","alert alert-warning");
+        alert1.setAttribute("id","alert-asientos-no-seleccionados");
+        alert1.setAttribute("role","alert");
+        alert1.setAttribute("style","display:none");
+        alert1.innerHTML = "Todos los pasajeros tienen que seleccionar asiento";
+
+        var alert2 = document.createElement("div");
+        alert2.setAttribute("class","alert alert-warning");
+        alert2.setAttribute("id","alert-asientos-repetidos");
+        alert2.setAttribute("role","alert");
+        alert2.setAttribute("style","display:none");
+        alert2.innerHTML = "Dos pasajeros no pueden ocupar el mismo asiento";
+
+        var button = document.createElement("button");
+        button.setAttribute("type","button");
+        button.setAttribute("class","btn btn-primary");
+        button.innerHTML="Tarjetas de Embarque";
+        button.setAttribute("onclick","imprimirTarjetaEmbarque()");
 
         divContainer.appendChild(title);
+        divContainer.appendChild(vuelo);
         divContainer.appendChild(subtitle);
 
-        pasajeros = pintarPasajeros(compra.pasajeros);
-        pasajeros.forEach(pasajero=> divContainer.appendChild(pasajero))
-
+        var divPasajeros = document.createElement("div");
+        divPasajeros.setAttribute("id","pasajeros-container");
+        pasajeros = pintarPasajeros(compra.pasajeros,compra.vuelo);
+        pasajeros.forEach(pasajero=> divPasajeros.appendChild(pasajero));  
+        divContainer.appendChild(divPasajeros); 
+        divContainer.appendChild(alert1);
+        divContainer.appendChild(alert2);
+        divContainer.appendChild(button);
         document.getElementsByClassName("contenedor")[0].appendChild(divContainer);
     }
     else{
@@ -88,13 +133,53 @@ function rellenarDatos(compra){
 }
 
 function checkin(){
-    // var localizador = document.getElementById("localizador").value;
-    var localizador ="DVN92285246612";
-    // var email = document.getElementById("email").value;
-    var email = "elena@gmail.com"
+    var localizador = document.getElementById("localizador").value;
+    var email = document.getElementById("email-localizador").value;
     var compras = JSON.parse(localStorage.getItem("compras"));
     var compra = compras.filter(compra => compra.numReserva== localizador && compra.usuario == email);
     document.getElementById("acceso-checkin").style.display="none";
     rellenarDatos(compra[0]);
+}
 
+function asientosSeleccionados(){
+    var asientosSelec = document.querySelectorAll("select.form-control");
+    var validation = true;
+    asientosSelec.forEach(asiento => {
+        if(asiento.value=="Selecciona un asiento"){
+            validation = false;
+        }
+    });
+
+    return validation;
+}
+
+function asientosRepetidos(){
+    var asientosSelec = document.querySelectorAll("select.form-control");
+    var validation = false;
+    var options = [];
+    asientosSelec.forEach(asiento => {
+        console.log(asiento.value);
+        options.push(asiento.value)
+        if(options.includes(asiento.value)){
+            validation = true;
+        }
+    });
+
+    return validation;
+}
+
+function imprimirTarjetaEmbarque(){
+    document.getElementById("alert-asientos-repetidos").style.display="none";
+    document.getElementById("alert-asientos-no-seleccionados").style.display="none";
+    if (asientosSeleccionados()){
+        console.log(asientosRepetidos());
+        if(!asientosRepetidos()){
+            console.log("imprime tarjetas");
+        }else{
+            document.getElementById("alert-asientos-repetidos").style.display="";
+        }
+        
+    }else{
+        document.getElementById("alert-asientos-no-seleccionados").style.display="";
+    }
 }

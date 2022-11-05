@@ -1,7 +1,7 @@
 (function divsPasajeros() {
     var sesion = sesionFromLocalStorage();
+    var numPasajeros = JSON.parse(localStorage.getItem('numPasajerosReservaActual'));
     if (sesion){
-        var numPasajeros = JSON.parse(localStorage.getItem('numPasajerosReservaActual'));
         var usuario = usuarioFromSesion(sesion);
         if (comprobarSicompra(usuario)){
             for (let i = 0; i < numPasajeros; i++) {
@@ -12,7 +12,7 @@
             document.getElementById("no-compra-alert").style.display="";
         }        
     } else{
-            for (let i = 0; i < numPasajeros; i++) {
+            for (let i = 0; i <= numPasajeros; i++) {
                 creaDiv(i);
             }
             pintaPrecioTotal();
