@@ -69,6 +69,17 @@ function comprobarCheckin(vuelo){
     return diff <= 48 && flightDate > currentDate;
 }
 
+function getEmailSiSesion(){
+    var sesion = sesionFromLocalStorage();
+    var email = " ";
+    if (sesion){
+        var usuario = usuarioFromSesion(sesion);
+        email = usuario.email;
+    }
+
+    return email;
+}
+
 function rellenarDatos(compra){
     if (comprobarCheckin(compra.vuelo)){
         var divContainer = document.createElement("div");
@@ -77,10 +88,20 @@ function rellenarDatos(compra){
         title.setAttribute("class","checkin-title");
         title.innerHTML = "Check in";
 
-        subtitle = document.createElement("p");
+        var subtitle = document.createElement("p");
         subtitle.innerHTML = "Revisa los datos de los pasajeros y selecciona asiento";
         var vuelo = document.createElement("h5");
         vuelo.innerHTML = `${compra.vuelo.origen} - ${compra.vuelo.destino}, ${compra.vuelo.fecha} ${compra.vuelo.hora}h`;
+
+        var subtitle2 = document.createElement("h5");
+        subtitle2.innerHTML = "Datos de Contacto";
+        var parrafo = document.createElement("p");
+        parrafo.innerHTML = "Email al que se enviaran las tajerta de embarque";
+
+        var inputEmail = document.createElement("input");
+        inputEmail.setAttribute("class","form-control form-control-sm");
+        inputEmail.setAttribute('id', 'inputEmail');
+        inputEmail.value= getEmailSiSesion();
 
         var alert1 = document.createElement("div");
         alert1.setAttribute("class","alert alert-warning");
@@ -108,9 +129,12 @@ function rellenarDatos(compra){
 
         var divPasajeros = document.createElement("div");
         divPasajeros.setAttribute("id","pasajeros-container");
-        pasajeros = pintarPasajeros(compra.pasajeros,compra.vuelo);
+        var pasajeros = pintarPasajeros(compra.pasajeros,compra.vuelo);
         pasajeros.forEach(pasajero=> divPasajeros.appendChild(pasajero));  
         divContainer.appendChild(divPasajeros); 
+        divContainer.appendChild(subtitle2); 
+        divContainer.appendChild(parrafo); 
+        divContainer.appendChild(inputEmail); 
         divContainer.appendChild(alert1);
         divContainer.appendChild(alert2);
         divContainer.appendChild(button);

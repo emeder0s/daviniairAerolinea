@@ -12,7 +12,7 @@
             document.getElementById("no-compra-alert").style.display="";
         }        
     } else{
-            for (let i = 0; i <= numPasajeros; i++) {
+            for (let i = 0; i < numPasajeros; i++) {
                 creaDiv(i);
             }
             pintaPrecioTotal();

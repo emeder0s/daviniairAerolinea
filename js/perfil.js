@@ -65,6 +65,7 @@ function guardarContraseña(){
             if(validacionPassword(contraseñaNueva)){
                 usuario.pass = contraseñaNueva;
                 guardarDatosEnLocalStorage(usuarios,usuario,sesion,"password");
+                document.getElementById("modificada-password").style.display="";
             }else{
                 document.getElementById("nuevaPasswordHelp").style.display="";
             }    
