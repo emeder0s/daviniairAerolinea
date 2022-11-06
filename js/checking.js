@@ -102,6 +102,11 @@ function rellenarDatos(compra){
         inputEmail.setAttribute("class","form-control form-control-sm");
         inputEmail.setAttribute('id', 'inputEmail');
         inputEmail.value= getEmailSiSesion();
+        var mensajeEmail = document.createElement("small");
+        mensajeEmail.setAttribute("class","form-text text-muted");
+        mensajeEmail.setAttribute("id","emailHelp");
+        mensajeEmail.setAttribute("style","display:none");
+        mensajeEmail.innerHTML="El email no puede estar vacio"
 
         var alert1 = document.createElement("div");
         alert1.setAttribute("class","alert alert-warning");
@@ -134,7 +139,8 @@ function rellenarDatos(compra){
         divContainer.appendChild(divPasajeros); 
         divContainer.appendChild(subtitle2); 
         divContainer.appendChild(parrafo); 
-        divContainer.appendChild(inputEmail); 
+        divContainer.appendChild(inputEmail);
+        divContainer.appendChild(mensajeEmail);
         divContainer.appendChild(alert1);
         divContainer.appendChild(alert2);
         divContainer.appendChild(button);
@@ -162,6 +168,7 @@ function checkin(){
     var compras = JSON.parse(localStorage.getItem("compras"));
     var compra = compras.filter(compra => compra.numReserva== localizador && compra.usuario == email);
     document.getElementById("acceso-checkin").style.display="none";
+    localStorage.setItem("vueloChecking",compra[0]);
     rellenarDatos(compra[0]);
 }
 
@@ -182,23 +189,34 @@ function asientosRepetidos(){
     var validation = false;
     var options = [];
     asientosSelec.forEach(asiento => {
-        console.log(asiento.value);
-        options.push(asiento.value)
         if(options.includes(asiento.value)){
             validation = true;
+        }else{
+            options.push(asiento.value)
         }
     });
 
     return validation;
 }
 
+function  exiteEmail(){
+    return document.getElementById("inputEmail").value;
+}
+
 function imprimirTarjetaEmbarque(){
     document.getElementById("alert-asientos-repetidos").style.display="none";
     document.getElementById("alert-asientos-no-seleccionados").style.display="none";
+    console.log(asientosRepetidos());
     if (asientosSeleccionados()){
-        console.log(asientosRepetidos());
         if(!asientosRepetidos()){
-            console.log("imprime tarjetas");
+            if(exiteEmail()){
+                localStorage.setItem("emailCheckin",exiteEmail())
+
+                window.location ="tarjetas.html"
+            }else{
+                document.getElementById("emailHelp").style.display="";
+            }
+            
         }else{
             document.getElementById("alert-asientos-repetidos").style.display="";
         }
