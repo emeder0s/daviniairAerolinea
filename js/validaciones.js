@@ -71,12 +71,15 @@ function validacionNombreoApellidos(nombre,input){
     nombre = nombre.toLowerCase();
     var i = 0;
     var validation = true;
-
-    while(i<nombre.length && validation){
-        validation = esLetra(nombre.charCodeAt(i));
-        i++;
+    if (nombre.length>0){
+        while(i<nombre.length && validation){
+            validation = esLetra(nombre.charCodeAt(i));
+            i++;
+        }
+    }else {
+        validation=false
     }
-    
+
     if (!validation){
         switch (input){
             case "nombre":
@@ -173,16 +176,39 @@ function caracteresEspeciales(password){
 }
 
 function validacionPassword(password){
-    return longitudPassword(password) && mayusculas(password) && minusculas(password) && caracteresEspeciales(password)
+    validation = longitudPassword(password) && mayusculas(password) && minusculas(password) && caracteresEspeciales(password);
+    if (!validation){
+        if (document.getElementById("passwordHelp")){
+            document.getElementById("passwordHelp").style.display="";
+        }
+    }
+    return validation
+}
+
+function validacionRepetirPassword(password,repetirPassword){
+    validation = password == repetirPassword;
+    if (!validation){
+        document.getElementById("repetirPassworddHelp").style.display="";
+    }
+    return validation;
 }
 
 function validacionesRegistro(){
+    document.querySelectorAll(".text-muted").forEach(elem => {
+        elem.style.display="none";
+    })
     var nombre = document.getElementById("r-nombre-input").value;
     var apellidos = document.getElementById("r-apellidos-input").value;
     var email = document.getElementById("r-email-input").value;
     var password = document.getElementById("r-password-input").value;
     var repetirPassword = document.getElementById("r-repetirPassword-input").value;
 
-    return validacionNombreoApellidos(nombre,"nombre") && validacionNombreoApellidos(apellidos,"apellidos") && validacionEmail(email) &&  validacionPassword(password) && password == repetirPassword;
+    var validacion1 = validacionNombreoApellidos(nombre,"nombre");
+    var validacion2 = validacionNombreoApellidos(apellidos,"apellidos");
+    var validacion3 = validacionEmail(email);  
+    var validacion4 = validacionPassword(password);
+    var validacion5 = validacionRepetirPassword(password,repetirPassword);
+
+    return validacion1 &&  validacion2 && validacion3 && validacion4 && validacion5;
 
 }

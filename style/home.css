@@ -199,3 +199,8 @@ p.origen-destino-large{
     color: white;
 }
 
+.mensaje-error{
+    background: #f44336;
+    color: white !important;
+  }
+

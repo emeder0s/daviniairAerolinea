@@ -121,7 +121,7 @@ function rellenarDatos(compra){
         alert.setAttribute("class","alert alert-warning");
         alert.setAttribute("role","alert");
         alert.setAttribute("style","margin-top:4%")
-        alert.innerHTML = `${compra.vuelo.origen} -> ${compra.vuelo.destino}, ${compra.vuelo.fecha} ${compra.vuelo.hora}h - Check in todavia NO está disponible`
+        alert.innerHTML = `${compra.vuelo.origen} -> ${compra.vuelo.destino}, ${compra.vuelo.fecha} ${compra.vuelo.hora}h - Check in NO está disponible`
         var button = document.createElement("button");
         button.setAttribute("type","button");
         button.setAttribute("class","btn btn-primary" );

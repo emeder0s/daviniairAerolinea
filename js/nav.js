@@ -145,22 +145,21 @@ function iniciarSesion(from){
 //La contraseña: Debe tener una longitud por lo menos de 8 caracteres y 
 //contener al menos una mayúscula, una minúscula, un número y un caracter especial (&,%,$...)
 function registrarse(){
-    // if (validacionesRegistro()){
-        validacionesRegistro();
-    // }
-    // var usuario = new Usuario(document.getElementById("r-nombre-input").value,document.getElementById("r-apellidos-input").value,"","",document.getElementById("r-email-input").value,"","",document.getElementById("r-password-input").value,0); 
-    // var usuarios = usuariosFromLocalStorage();
-
-    // if(usuarios.existeUsuario(document.getElementById("r-email-input").value)== null){
-    //     usuarios.aniadirUsuario(usuario);
-    //     usuarios.guardarUsuarios();
-    //     var sesion = new Sesion("open", usuario);
-    //     sesion.guardarSesion();
-    //     actualizarNav();
-    //     document.getElementById("close-registro").click();
-    // }else{
-    //     mostrarMensaje("Ya hay una cuenta destina a este email");
-    // }
+    if (validacionesRegistro()){
+        var usuario = new Usuario(document.getElementById("r-nombre-input").value,document.getElementById("r-apellidos-input").value,"","",document.getElementById("r-email-input").value,"","",document.getElementById("r-password-input").value,0); 
+        var usuarios = usuariosFromLocalStorage();
+    
+        if(usuarios.existeUsuario(document.getElementById("r-email-input").value)== null){
+            usuarios.aniadirUsuario(usuario);
+            usuarios.guardarUsuarios();
+            var sesion = new Sesion("open", usuario);
+            sesion.guardarSesion();
+            actualizarNav();
+            document.getElementById("close-registro").click();
+        }else{
+            mostrarMensaje("Ya hay una cuenta destina a este email");
+        } 
+    }
 }
 
 function cerrarSesion(){
