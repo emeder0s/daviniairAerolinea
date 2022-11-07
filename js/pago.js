@@ -91,7 +91,6 @@ function pintarMetodoPago(metodos){
     var text = document.createTextNode("Selecciona una tarjeta:");
     var p = document.createElement("p");
     p.appendChild(text);
-    console.log(metodos);
     if (metodos.length!=0){
         div.appendChild(p);
         metodos.forEach((metodo,index) => {
@@ -115,7 +114,6 @@ function metodos(){
         var metodos = JSON.parse(localStorage.getItem("metodosPago"));
         metodos = buscarMetodos(metodos,usuario);
         pintarMetodoPago(metodos);
-        console.log("hola")
     }
 };
 

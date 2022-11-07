@@ -113,7 +113,6 @@ function pintaPrecioTotal() {
 function continuarApago() {
     let datosPasajeros = document.getElementsByClassName('datos-pasajero');
     document.getElementById("mensaje-continuar").style.display="none";
-    console.log(datosPasajeros)
     let pasajeros = [];
     i = 0;
     var todoOK = true;

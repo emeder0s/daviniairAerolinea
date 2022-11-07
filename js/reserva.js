@@ -14,9 +14,7 @@ function autocompletar(usuario){
 
 //Inicia sesion y autocompleta los datos del usuario logueado
 function iniciarSesionYAutoCommpleta(){
-    console.log("antesIni");
     iniciarSesion("reserva");
-    console.log("despuesIni");
     var sesion = sesionFromLocalStorage();
     var usuario = usuarioFromSesion(sesion);
     autocompletar(usuario);
