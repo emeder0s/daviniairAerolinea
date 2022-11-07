@@ -25,6 +25,7 @@
     justify-content: center;
     font-size: xx-large;
     font-family: system-ui;
+    color: #00629c;
 }
 
 .resumen{
@@ -45,6 +46,7 @@
     font-family: system-ui;
     
     
+    
 }
 
 
@@ -63,22 +65,70 @@
 
 .resumenpasajeros{
     width: 700px;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     background-color: white;    
-    padding: 10px;
+    padding: 20px;
 }
 
 .resumenvuelo{
     width: 700px;
     text-align: center;
-    border: 1px solid grey;
+    padding: 20px;
     background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.resumenvuelo p{
+    margin:0;
 }
 
 .resumenprecio{
     width: 700px;
     text-align: center;
-    border: 1px solid grey;
     background-color: white;
+    color: white;
+    background: #00629c;
+    padding: 20px;
+    font-size: 40px;
+    border:none;
+    border-radius: 10px;
 
 }
+
+#num-reserva{
+    font-size: 20px;
+    color: #00629c;
+}
+
+.parrafo-medio {
+    font-size: 17px;
+    color: #494949;
+    margin:0px;
+}
+
+.titulo-div {
+    color:#494949;
+}
+
+.destino-origen{
+    font-size: 25px;
+}
+
+div#resumen .resumenpasajeros, .resumenvuelo {
+    font-size: 17px;
+}
+
+div#resumen{
+    box-shadow: 1px 1px 12px;
+    border-radius: 10px;
+    background-color: white;   
+    padding:5px;
+}
+
+.pasajero-title{
+    font-size: 20px;
+    color: #00629c;
+}
+
