@@ -1,3 +1,5 @@
+//Rellena los select de la selección de asientos con aquellos que no estén ocupados en el avión. Para saber si estan ocupados o no, 
+// miramos el array avion del vuelo.
 function getAsientos(asientos,vuelo){
    var asientoArray = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","10A","10B","11A","11B","12A","12B","13A","13B","14A","14B","15A","15B"];
    vuelo.avion.forEach( (asientoLibre,index) => {
@@ -61,14 +63,16 @@ function pintarPasajeros(pasajeros, vuelo){
     return arrayP;
 }
 
-function comprobarCheckin(vuelo){
+//Comprueba si el checkin del vuelo está disponible
+function comprobarCheckin(vuelo,checkin){
     var fechaString = `${vuelo.fecha}T${vuelo.hora}:00`;
     var flightDate = new Date(fechaString).getTime();
     var currentDate = new Date().getTime();
     var diff = Math.abs(flightDate-currentDate) / 1000 / 60 / 60;
-    return diff <= 48 && flightDate > currentDate;
+    return diff <= 48 && flightDate > currentDate && !checkin;
 }
 
+//Si la sesión está iniciada autorellena el campo del email
 function getEmailSiSesion(){
     var sesion = sesionFromLocalStorage();
     var email = " ";
@@ -79,9 +83,9 @@ function getEmailSiSesion(){
 
     return email;
 }
-
+//Crea la página de check in: los inputs con los datos de los pasajeros y el input del email, necesario para sacar las tarjetas de embarque
 function rellenarDatos(compra){
-    if (comprobarCheckin(compra.vuelo)){
+    if (comprobarCheckin(compra.vuelo,compra.checkin)){
         var divContainer = document.createElement("div");
         divContainer.setAttribute("class","checkin-datos");
         title = document.createElement("h3");
@@ -162,6 +166,7 @@ function rellenarDatos(compra){
     }
 }
 
+//Comprueba si se puede hacer el check in, y si es así genera los inputs y rellena los datos necesarios
 function checkin(){
     var localizador = document.getElementById("localizador").value;
     var email = document.getElementById("email-localizador").value;
@@ -172,6 +177,7 @@ function checkin(){
     rellenarDatos(compra[0]);
 }
 
+//Comprueba que todos los selects tngan un asiento seleccionado
 function asientosSeleccionados(){
     var asientosSelec = document.querySelectorAll("select.form-control");
     var validation = true;
@@ -184,6 +190,7 @@ function asientosSeleccionados(){
     return validation;
 }
 
+//Comprueba que dos pasajeros no tengan asientos repetidos
 function asientosRepetidos(){
     var asientosSelec = document.querySelectorAll("select.form-control");
     var validation = false;
@@ -199,20 +206,24 @@ function asientosRepetidos(){
     return validation;
 }
 
+//Comprueba si se ha añadido el email
 function  exiteEmail(){
     return document.getElementById("inputEmail").value;
 }
 
+//Modifica el array de vuelos con los asientos que se hayan ocupado en ese vuelo
 function modificarVuelos(vuelo){
     var vuelos = JSON.parse(localStorage.getItem("vuelos"));
     vuelos[parseInt(vuelo.id)-1].avion = vuelo.avion;
     localStorage.setItem("vuelos",JSON.stringify(vuelos));
 }
 
+//Modifica el array de compras con los asientos que se hayan ocupado en el vuelo de esa compra
 function modificarCompras(compra){
     var compras = JSON.parse(localStorage.getItem("compras"));
     var posicion = compras.findIndex(element=> element.numReserva == compra.numReserva);
     compras[posicion].vuelo.avion = compra.vuelo.avion;
+    compras[posicion].checkin = true;
     localStorage.setItem("compras",JSON.stringify(compras));
 }
 
@@ -231,17 +242,17 @@ function ocuparAsientos(asientos){
     modificarCompras(compra);
 }
 
+//Comprueba los campos del check in, si los asientos estan repetidos o no, y si todo está bien, "saca" las tarjetas de embarque
 function imprimirTarjetaEmbarque(){
     document.getElementById("alert-asientos-repetidos").style.display="none";
     document.getElementById("alert-asientos-no-seleccionados").style.display="none";
-    
     if (asientosSeleccionados()){
         if(!asientosRepetidos()){
             if(exiteEmail()){
                 localStorage.setItem("emailCheckin",exiteEmail())
                 var asientos = document.querySelectorAll("select.form-control");
                 ocuparAsientos(asientos);
-                //window.location ="tarjetas.html"
+                window.location ="tarjetas.html"
             }else{
                 document.getElementById("emailHelp").style.display="";
             }

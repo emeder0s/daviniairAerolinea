@@ -24,6 +24,7 @@ class Compra {
         this.pasajeros = pasajeros;
         this.vuelo = vuelo;
         this.totalPagado = totalPagado;
+        this.checkin = false;
     }
 }
 

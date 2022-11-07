@@ -93,6 +93,7 @@ function iniciaCompras(){
     compra.pasajeros = [{nombre: "elena", apellidos: "mederos", dni: "54058798N"}];
     compra.vuelo = {asientosLibres:30, destino:"Edimburgo", fecha:"2022-11-01", hora:"09:00", horallegada:"14:30", id:11, origen:"Madrid", precio:90, numVuelo:"DV0923"};
     compra.totalPagado = 90;
+    compra.checkin = true;
     compras.push(compra)
     
     localStorage.setItem("compras",JSON.stringify(compras));
