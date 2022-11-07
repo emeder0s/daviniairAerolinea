@@ -9,6 +9,7 @@
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 30%;
+    height: 100vh;
   }
   
   /* Style the buttons inside the tab */
@@ -45,40 +46,11 @@
     border-left: none;
     background-color: white;
     padding: 30px;
+    height: 100vh;
   }
 
- input {
-    width: 200px;
-    height: 30px;
-    font-size: large;
-    padding-left: 5px;
-}
-input[type=date] {
-    width: 150px;
-    height: 30px;
-    font-size: large;
-    padding-left: 5px;
-}
-
-label{
-    font-size: large;
-    padding-left: 5px;
-}
-
-button{
-    width: 24%;
-    font-family: system-ui;
-    font-size: large;
-    color: white;
-    font-weight: 500;
-    background-color: #2e2e5c;
-    border: 0.5px solid white;
-
-}
-
-button:hover {
-    background-color: #4e4e79;
-    color: white;
+button.guardar{
+    margin-top: 20px;
 }
 
 select#extension {
@@ -112,3 +84,68 @@ div.registro div {
   margin-top:5px;
 
 }
+
+h5.subtitle{
+  margin-top: 20px;
+  color: #00629c;
+  width: 100%;
+}
+
+br.after-title {
+  width:100%;
+  text-align:left;
+  margin-left:0;
+}
+
+.mensaje-error{
+  background: #f44336;
+  color: white !important;
+}
+
+div#div-fechaNac{
+  padding-left: 16px;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.p-pasajeros{
+  margin:0px;
+}
+
+.card {
+  background: #00629c;
+  color: white;
+  padding: 10px;
+  box-shadow: 1px 1px 3px black;
+  margin:10px;
+}
+
+.card ul {
+  padding-left: 30px;
+}
+
+.right{
+  text-align: right;
+}
+
+.total-precio, .num-reserva{
+  font-size: 20px;
+}
+
+.vuelo {
+  font-size: 15px;
+}
+
+.checkin {
+  background: green;
+}
+
+#container-aniadirMetodo{
+  margin-top: 20px;
+}
+
+.alert-primary{
+  margin-top:15px;
+}
+
+

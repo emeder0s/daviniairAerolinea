@@ -3,35 +3,135 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="nav.js"></script>
-    <link href="home.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="js/nav.js"></script>
+    <link href="style/home.css" rel="stylesheet">
 </head>
 
 <body>
     <nav></nav>
     <div id="fondoHome"></div>
     <div class="contenedor">
-        <div class="busqueda">
-            <input type="text" placeholder="Origen" value="Madrid">
-            <select id="destion">
-                <option>Edimburgo</option>
-                <option>Ciudad de Mexico</option>
-                <option>París</option>
-            </select>
-            <label for=""><input type="number" class="pasajeros" id="pasajeros" min="1" max="10" placeholder="Nº de pasajeros"></label>
-            <label><input type="date" class="fecha" id="fecha"></label>
-            
-            <button id="buscar" onclick="encogerBusqueda(); buscarVuelos();">Buscar vuelos</button>
+        <div id="buscaVuelos"class="busqueda">
+            <div class="campos-busqueda">
+                <div class="form-group">
+                    <label for="origen">Origen</label>
+                    <input id="origen" class="form-control form-control-sm" type="text" value="Madrid" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="destino">Destino</label>
+                    <select id="destino" class="form-control form-control-sm">
+                        <option>Edimburgo</option>
+                        <option>Ciudad de Mexico</option>
+                        <option>París</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pasajeros">Nº Pasajeros</label>
+                    <input type="number" class="form-control form-control-sm pasajeros" id="pasajeros" min="1" max="10" value="1"></label>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" class="fecha form-control form-control-sm" aria-describedby="fechaHelp"id="fecha">
+                    <small id="fechaHelp" class="form-text" style="display:none">Debe seleccionar una fecha</small>
+
+                </div>
+            </div>
+            <div>
+                <button id="buscar" type="button" class="btn btn-primary" onclick="checkFormVuelos();">Buscar vuelos</button>
+            </div>
         </div>
     </div>
-    <script src="home.js"></script>
-    <script src="reserva.js"></script>
-    <script src="vuelo.js"></script>
-    <script src="clases.js"></script>
+    <!-- Modal Iniciar Sesion -->
+    <div class="modal fade" id="iniSesionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Inicia sesión con tu cuenta Daviniair</h5>
+            <button id="close-ini-sesion" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div id="wrong-login-alert" class="alert alert-warning" role="alert" style="display:none;">
+                    Login incorrecto
+                </div>
+                <div id="no-exist-account-alert" class="alert alert-warning" role="alert" style="display:none;">
+                    No existe cuenta creada con ese email
+                </div>
+                <div class="form-group">
+                    <label for="email-input">Email</label>
+                    <input type="email" class="form-control" id="email-sesion-input" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password-sesion-input">Password</label>
+                    <input type="password" class="form-control" id="password-sesion-input" aria-describedby="passwordHelp" placeholder="Enter password">
+                    <!-- <small id="passwordHelp" class="form-text text-muted">No debes compartir tu contraseña con nadie</small> -->
+                </div>
+            <button type="button" class="btn btn-primary" onclick="iniciarSesion('nav')">Iniciar Sesion</button>
+            </div>
+            <div class="modal-footer">
+            <p>¿Todavía no te has dado de alta?</p>
+            <a href="registro.html">Regístrate</p></a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Modal Registro -->
+    <div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="registroModalLabel">Regístrate para tener tu cuenta Daviniair</h5>
+                <button id="close-registro" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="r-email-input">Email</label>
+                        <input type="email" class="form-control" id="r-email-input" aria-describedby="r-emaildHelp">
+                        <small id="emailHelp" class="form-text text-muted mensaje-error" style="display:none">Debe cumplir con el formato email: xxxx@xxx.xxx</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-nombre-input">Nombre</label>
+                        <input type="text" class="form-control" id="r-nombre-input" aria-describedby="r-nombreHelp">
+                        <small id="nombreHelp" class="form-text text-muted mensaje-error" style="display:none">Sólo puede contener letras</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-apellidos-input">Apellidos</label>
+                        <input type="text" class="form-control" id="r-apellidos-input" aria-describedby="r-apellidoHelp">
+                        <small id="apellidosHelp" class="form-text text-muted mensaje-error" style="display:none">Sólo puede contener letras</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-password-input">Contraseña</label>
+                        <input type="password" class="form-control" id="r-password-input" aria-describedby="r-passwordHelp">
+                        <small id="passwordHelp" class="form-text text-muted mensaje-error" style="display:none">Debe tener una longitud por lo menos de 8 caracteres y contener al menos una mayúscula, una minúscula, un número y un caracter especial (&,%,$...)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-repetirPassword-input">Repetir contraseña</label>
+                        <input type="password" class="form-control" id="r-repetirPassword-input" aria-describedby="r-repetirPasswordHelp">
+                        <small id="repetirPassworddHelp" class="form-text text-muted mensaje-error" style="display:none">Debe coincidir con la contraseña</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="registrarse()">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/clases.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script src="js/inicializar.js"></script>
+    <script src="js/registro.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/reserva.js"></script>
+    <script src="js/vuelo.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

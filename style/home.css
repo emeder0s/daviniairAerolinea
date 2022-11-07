@@ -1,0 +1,206 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    /* background-color: rgb(46, 46, 92); */
+    font-family: 'Open Sans', sans-serif;
+    font-size: small;
+    background-color: #eeeeee;
+}
+
+#fondoHome {
+    background-image: url(/img/avion2.png);
+    opacity: 0.8;
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    z-index: -1;
+    background-size: cover;
+    box-shadow: inset 0px 0px 8px #000;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.busqueda {
+    background-color: white;
+    width: 90%;
+    margin-top: 8%;
+    border: 1px solid grey;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 1%;
+    box-shadow: 1px 1px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.campos-busqueda{
+    display: flex;
+    flex-direction: row;
+}
+
+.campos-busqueda div {
+    width: 30%;
+    margin-right: 8px;
+}
+
+#buscar {
+    width: 100%;
+}
+
+#vuelos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    width: 100%;
+    /* gap: 70px; */
+}
+
+#vuelos h3 {
+    margin-left: 20px;
+}
+
+.cajareserva{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    text-align: center;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #bac1c2;
+    padding: 3px;
+}
+
+.cajaprecio{
+    background-color: #00629c;
+    display:flex;
+}
+
+.cajareserva button{
+    background-color: #2e2e5c;
+    color: white;
+    font-size: large;
+    border: 0.5px solid white;
+    width: 160px;
+    height: 40px;
+}
+
+.cajareserva p{
+    font-size:x-large;
+    justify-content: space-between;
+}
+
+.cajareserva div{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+div.busqueda2 {
+    background-color: #eeeeee;
+    width: 100%;
+    border: 1px solid grey;
+    height: fit-content;
+    margin-top: 0;
+    padding: 1%;
+    box-shadow: 1px 1px 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+}
+div.busqueda2 p{
+    margin-bottom:0px;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+
+.modal-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #00629c;
+    border-color: #00629c;
+}
+
+#proceso-compra ul li {
+    display: inline;
+}
+
+#proceso-compra ul li hr{
+    border: 1px solid black;
+}
+
+.button-nueva-busqueda {
+    height: 22px;
+    line-height: 1px;
+}
+
+p.origen-destino {
+    font-size: 16px;
+}
+
+.precio-compra{
+    background: #00629c;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-shadow: 1px 1px 3px black;
+    cursor: pointer;
+}
+
+.precio-compra:hover{
+    background: #0069D9;
+}
+
+.precio-compra.disabled {
+    background: #707070;
+    cursor: not-allowed;
+}
+
+p.horas-vuelos {
+    font-size: 13px;
+    color: #7e7d7d;
+    margin: 0px;
+}
+
+p.origen-destino-large{
+    margin: 0px;
+    font-size: 20px;
+}
+
+.flecha p{
+    color: #9b9b9b;
+}
+
+#fechaHelp{
+    background: #f44336;
+    color: white;
+}
+
+.mensaje-error{
+    background: #f44336;
+    color: white !important;
+  }
+

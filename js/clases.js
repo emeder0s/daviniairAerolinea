@@ -1,5 +1,48 @@
+//Class Reserva
+class Reserva {
+    constructor(vuelo) {
+        this.vuelo = vuelo; //objeto de tipo Vuelo
+        this.pasajeros; //Array de JSONs con los datos de los pasajeros
+        this.metodoPago; //JSON con los datos de pago
+    }
+
+    setPasajeros(pasajeros) {
+        this.pasajeros = pasajeros;
+    }
+
+    setMetodoPago(metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+}
+
+//Class Compra
+class Compra {
+    constructor(numReserva, fechaReserva, usuario, pasajeros, vuelo, totalPagado) {
+        this.numReserva = numReserva;
+        this.fechaReserva = fechaReserva;
+        this.usuario = usuario;
+        this.pasajeros = pasajeros;
+        this.vuelo = vuelo;
+        this.totalPagado = totalPagado;
+        this.checkin = false;
+    }
+}
+
+class MetodoPago {
+    constructor(nombre,numTarjeta,fechaExp,cvv,usuario){
+        this.nombre=nombre;
+        this.numTarjeta=numTarjeta;
+        this.fechaExp=fechaExp;
+        this.cvv=cvv;
+        this.usuario = usuario;
+    }
+
+    guardarMetodo
+}
+
+// Clas Usuario
 class Usuario {
-    constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points){
+    constructor(nom,ape,dni,fechaNac,email,exTtel,tel,pass,points,historialCompra){
         this.nom = nom;
         this.ape = ape;
         this.dni = dni;
@@ -9,96 +52,32 @@ class Usuario {
         this.tel = tel;
         this.pass = pass;
         this.points = points;
+        this.historialCompra = historialCompra;
     }
 
-    get nombre(){
-        return this.nom;
+    aniadirCompra(compra){
+        this.historialCompra.push(compra);
     }
-
-    set nombre(nom){
-         this.nom = nom;
-    }
-
-    get apellido(){
-        return this.ape;
-    }
-
-    set apellido(ape){
-        this.ape = ape;
-    }
-
-    get documentoIden(){
-        return this.dni;
-    }
-
-    set documentoIden(dni){
-        this.dni = dni;
-    }
-
-    get fechaNacimiento(){
-        return this.fechaNac;
-    }
-
-    set fechaNacimiento(fechaNac){
-        this.fechaNac = fechaNac;
-    }
-
-    get correo(){
-        return this.email;
-    }
-
-    set correo(email){
-        this.email = email;
-    }
-
-    get telefono(){
-        return this.tel;
-    }
-
-    set telefono(tel){
-        this.tel = tel;
-    }
-
-    get extTelefono(){
-        return this.tel;
-    }
-
-    set extTelefono(exTtel){
-        this.exTtel = exTtel;
-    }
-
-    get password(){
-        return this.tel;
-    }
-
-    set password(pass){
-        this.pass = pass;
-    }
-
-    get dPoints(){
-        return this.points;
-    }
-
-    set dPoints(points){
-        this.points = points;
-    }
-
+    
+    //Comprueba si la contraseña del usuario es la contraseña guardada para el mismo
     comprobarPassword(password){
         return this.pass==password;  
     }
 
-   fromJsonToUsuario(json){
-        return Object.assign(this, json);
-   }
+    //Se le pasa un objeto JSON con los atributos del Usuario y lo convierte (y devuelve) en un objeto de la clase Usuario
+    fromJsonToUsuario(json){
+         return Object.assign(this, json);
+    }
 
-   devolverAtributo(atributo){
+    //Devuelve el valor del atributo que se le pida
+    devolverAtributo(atributo){
         var valor = "";
         switch (atributo) {
             case "nombre":
                 
                 valor = this.nom;
                 break;
-            case "apellido":
+            case "apellidos":
                 valor = this.ape;
                 break;
             case "dni":
@@ -115,20 +94,24 @@ class Usuario {
                 break;
             case "telefono":
                 valor = this.tel;
-                    break; 
+                break; 
+            case "points":
+                valor = this.points;
+                break; 
             default:
                 break;
         }
 
         return valor;
-   }
-
-   guardarAtributo(atributo,valor){
+    }
+    
+    //Guarda el valor del atributo dado
+    guardarAtributo(atributo,valor){
         switch (atributo) {
             case "nombre":
                 this.nom = valor;
                 break;
-            case "apellido":
+            case "apellidos":
                 this.ape = valor;
                 break;
             case "dni":
@@ -145,19 +128,23 @@ class Usuario {
                 break;
             case "telefono":
                 this.tel = valor;
-                break;    
+                break;
+            case "points":
+                this.points = valor;
+                break;   
             default:
                 break;
         }
     }
 }
 
+//Clase Usuarios
 class Usuarios{
     constructor(){
         this.usuarios = [];
     }
     
-    //comprueba si el usuario ya existe (se comprueba por el correo)
+    //Comprueba si el usuario ya existe (se comprueba por el correo)
     existeUsuario(email) {
         var existe = false;
         var key = 0;
@@ -174,12 +161,12 @@ class Usuarios{
         return usuario
     }
     
-    //añade un usuario
-    añadirUsuario(usuario){
+    //Añade un usuario
+    aniadirUsuario(usuario){
         this.usuarios.push(usuario);
     }
 
-    //devuelva la posicion donde está el usuario
+    //Devuelva la posicion donde está el usuario
     buscarUsuario(usuario){
         var existe = false;
         var key = 0;
@@ -194,7 +181,7 @@ class Usuarios{
         return position
     }    
     
-    //Modifica los datos personales del suario
+    //Modifica los datos personales del usuario
     modificarDatosPersonales(usuario, posicion){
         this.usuarios[posicion].nom = usuario.nom;
         this.usuarios[posicion].ape = usuario.ape;
@@ -203,55 +190,61 @@ class Usuarios{
         this.usuarios[posicion].email = usuario.email;
         this.usuarios[posicion].exTtel = usuario.exTtel;
         this.usuarios[posicion].tel = usuario.tel;
+        this.usuarios[posicion].points = usuario.points;
     }
 
+    //Modifica el password de un usuario --> ESTA DEBERÍA IR EN LA CLASE USUARIO
     modificarPassword(usuario, posicion){
         this.usuarios[posicion].pass = usuario.pass;
     }
 
+    //Modifica el password de un usuario --> ESTA DEBERÍA IR EN LA CLASE USUARIO
+    modificarHistorialCompra(usuario, posicion){
+        this.usuarios[posicion].historialCompra = usuario.historialCompra;
+    }
+
+    //Guarda los usuarios en el localStorage
     guardarUsuarios(){
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios))
     }
 
+    //Se le pasa un objeto JSON con los atributos de la clase y lo convierte en un objeto de la clase Usuarios
     fromJsonToUsuarios(json){
         return Object.assign(this, json);
    }
 }
 
+//Clase Sesion
 class Sesion{
     constructor(estado, usuario){
         this.estado = estado;
         this.usuario = usuario;
     }
-
-    get estadoSesion() {
-        return this.estado
-    }
-
-    set estadoSesion(estado) {
-        this.estado = estado;
-    }
-
-    get usuarioSesion() {
-        return this.usuario;
-    }
-
-    set usuarioSesion(usuario) {
-        this.usuario = usuario;
-    }
-
-    cerrarSesion(){
-        this.estado = "close";
-        this.usuario = null;
-    }
-
+    
+    //Guarda la sesión en el localStorage
     guardarSesion(){
         localStorage.setItem("sesion",JSON.stringify(this))
     }
-
+    //Se le pasa un objeto JSON con los atributos de la clase y lo convierte en un objeto de la clase Sesion
     fromJsontoSesion(json){
         return Object.assign(this, json);
    }
+}
+
+//Clase vuelo
+class Vuelo {
+    constructor(id, origen, destino, fecha, hora, horallegada, asientosLibres, precio, numVuelo,avion) {
+        this.id = id;
+        this.origen = origen;
+        this.destino = destino;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.horallegada = horallegada;
+        this.asientosLibres = asientosLibres;
+        this.precio = precio;
+        this.numVuelo = numVuelo
+        this.avion = avion
+    }
 }
 
 //Muestra un mensaje de error por el console.log
@@ -259,14 +252,20 @@ function mostrarMensaje(mensaje){
     console.log(mensaje);
 }
 
+//Devuelve la sesión guarda en el localStorage como objeto Sesion
 function sesionFromLocalStorage(){
-    var sesionJSON = JSON.parse(localStorage.getItem("sesion"));
-    var sesion = new Sesion();
-    sesion = sesion.fromJsontoSesion(sesionJSON);
+    if (localStorage.getItem("sesion")){
+        var sesionJSON = JSON.parse(localStorage.getItem("sesion"));
+        var sesion = new Sesion();
+        sesion = sesion.fromJsontoSesion(sesionJSON);
+    }else{
+        sesion= null;
+    }
 
     return sesion;
 }
 
+//Devuelve los usuarios guardos en el localStorage como objeto Usuarios
 function usuariosFromLocalStorage(){
     var usuariosJSON = JSON.parse(localStorage.getItem("usuarios"));
     var usuarios = new Usuarios();
@@ -274,7 +273,9 @@ function usuariosFromLocalStorage(){
 
     return usuarios;
 }
+usuariosFromLocalStorage()
 
+//Devuelve el usuario guardo en la sesion del localStorage como objeto Usuario
 function usuarioFromSesion(sesion){
     var usuarioJSON = sesion.usuario;
     var usuario = new Usuario();
