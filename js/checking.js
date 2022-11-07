@@ -168,7 +168,7 @@ function checkin(){
     var compras = JSON.parse(localStorage.getItem("compras"));
     var compra = compras.filter(compra => compra.numReserva== localizador && compra.usuario == email);
     document.getElementById("acceso-checkin").style.display="none";
-    localStorage.setItem("vueloChecking",compra[0]);
+    localStorage.setItem("vueloChecking",JSON.stringify(compra[0]));
     rellenarDatos(compra[0]);
 }
 
@@ -203,16 +203,43 @@ function  exiteEmail(){
     return document.getElementById("inputEmail").value;
 }
 
+function modificarVuelos(vuelo){
+    var vuelos = JSON.parse(localStorage.getItem("vuelos"));
+    vuelos[parseInt(vuelo.id)-1].avion = vuelo.avion;
+    localStorage.setItem("vuelos",JSON.stringify(vuelos));
+}
+
+function modificarCompras(compra){
+    console.log(compra)
+
+}
+
+//Pone a false los asientos que haya seleccionado el usuario al hacer el checkin
+function ocuparAsientos(asientos){
+    var asientoArray = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","10A","10B","11A","11B","12A","12B","13A","13B","14A","14B","15A","15B"];
+    var compra = JSON.parse(localStorage.getItem("vueloChecking"));
+    var avion = compra.vuelo.avion
+    asientos.forEach(asiento =>{
+        var posicion = asientoArray.findIndex(element=> element == asiento.value);
+        avion[posicion] = false;
+    });
+    compra.vuelo.avion = avion;
+    localStorage.setItem("vueloChecking",JSON.stringify(compra));
+    modificarVuelos(compra.vuelo);
+    modificarCompras(compra);
+}
+
 function imprimirTarjetaEmbarque(){
     document.getElementById("alert-asientos-repetidos").style.display="none";
     document.getElementById("alert-asientos-no-seleccionados").style.display="none";
-    console.log(asientosRepetidos());
+    
     if (asientosSeleccionados()){
         if(!asientosRepetidos()){
             if(exiteEmail()){
                 localStorage.setItem("emailCheckin",exiteEmail())
-
-                window.location ="tarjetas.html"
+                var asientos = document.querySelectorAll("select.form-control");
+                ocuparAsientos(asientos);
+                //window.location ="tarjetas.html"
             }else{
                 document.getElementById("emailHelp").style.display="";
             }
