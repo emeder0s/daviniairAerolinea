@@ -67,8 +67,9 @@ function esLetra(letra){
 }
 
 function validacionNombreoApellidos(nombre,input){
-    nombre = nombre.replace(" ", "");
+    nombre = nombre.replaceAll(" ", "");
     nombre = nombre.toLowerCase();
+    console.log(nombre);
     var i = 0;
     var validation = true;
     if (nombre.length>0){
@@ -83,10 +84,14 @@ function validacionNombreoApellidos(nombre,input){
     if (!validation){
         switch (input){
             case "nombre":
-                document.getElementById("nombreHelp").style.display="";
+                if (document.getElementById("nombreHelp")){
+                    document.getElementById("nombreHelp").style.display="";
+                }
                 break;
             case "apellidos":
-                document.getElementById("apellidosHelp").style.display="";
+                if (document.getElementById("apellidosHelp")){
+                    document.getElementById("apellidosHelp").style.display="";
+                }
                 break;
         }
     }
@@ -211,4 +216,22 @@ function validacionesRegistro(){
 
     return validacion1 &&  validacion2 && validacion3 && validacion4 && validacion5;
 
+}
+
+function validacionTarjeta(numTarjeta){
+    var regExp = /^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$/;
+    var validacion = regExp.test(numTarjeta);
+    return validacion;
+}
+
+function validacionFechaExp(fechaEx){
+    var regExp = /^\d{2}\/\d{2}$/;
+    var validacion = regExp.test(fechaEx);
+    return validacion;
+}
+
+function validacionCVV(cvv){
+    var regExp = /^[0-9]{3,3}$/;
+    var validacion = regExp.test(cvv);
+    return validacion;
 }

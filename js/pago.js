@@ -51,8 +51,8 @@ function confirmarPago() {
     var numTarjeta = document.getElementById('cardnumber').value;
     var fechaEx = document.getElementById('date').value;
     var cvv = document.getElementById('cvv').value;
-
-    if (nombre && numTarjeta  && fechaEx  && cvv) {
+    console.log(validacionNombreoApellidos(nombre,"nombre")," " ,validacionTarjeta(numTarjeta)," ",validacionFechaExp(fechaEx)," ",validacionCVV(cvv))
+    if (validacionNombreoApellidos(nombre,"nombre") && validacionTarjeta(numTarjeta)  && validacionFechaExp(fechaEx)  && validacionCVV(cvv)) {
         var reserva = new Reserva();
         var reservaJson = JSON.parse(localStorage.getItem('reservaActual'));
         reserva = Object.assign(reserva, reservaJson);
@@ -67,7 +67,7 @@ function confirmarPago() {
         restarAsientosVuelos(reserva);
         window.location = 'resumen.html';
     } else {
-        alert('Todos los campos son obligatorios');
+        document.getElementById("wrong-data").style.display="";
     }
 }
 
