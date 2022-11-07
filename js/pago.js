@@ -77,3 +77,53 @@ function confirmarPago() {
     var precioTotal = vuelo.precio * JSON.parse(localStorage.getItem('numPasajerosReservaActual'));
     document.getElementById('precioTotal').appendChild(document.createTextNode('TOTAL: ' + precioTotal + '€'));
 })();
+
+function buscarMetodos(metodos,usuario){
+    return metodos.filter(metodo =>  metodo.usuario == usuario.email);
+}
+
+function sacarTarjeta(num){
+    return "Tarjeta ************" + num.substring(11,15);
+ }
+
+function pintarMetodoPago(metodos){
+    var div = document.getElementById("metodos");
+    var text = document.createTextNode("Selecciona una tarjeta:");
+    var p = document.createElement("p");
+    p.appendChild(text);
+    div.appendChild(p);
+    metodos.forEach((metodo,index) => {
+        var tarjeta = document.createTextNode(sacarTarjeta(metodo.numTarjeta));
+        var container = document.createElement("div");
+        container.setAttribute("class","alert alert-primary metodo-pago");
+        container.setAttribute("role","alert");
+        container.setAttribute("onclick",`rellenarMetodo(${index})`);
+        container.appendChild(tarjeta);
+        div.appendChild(container);
+    });
+}
+
+//Pinta el precio total del pago
+function metodos(){
+    var sesion = sesionFromLocalStorage();
+    if (sesion){
+        var usuario = usuarioFromSesion(sesion);
+        var metodos = JSON.parse(localStorage.getItem("metodosPago"));
+        metodos = buscarMetodos(metodos,usuario);
+        pintarMetodoPago(metodos);
+    }
+};
+
+function rellenarMetodo(index){
+    var sesion = sesionFromLocalStorage();
+    var usuario = usuarioFromSesion(sesion);
+    var metodos = JSON.parse(localStorage.getItem("metodosPago"));
+    metodos = buscarMetodos(metodos,usuario);
+
+    document.getElementById("cardholder").value = metodos[index].nombre
+    document.getElementById("cardnumber").value = metodos[index].numTarjeta
+    document.getElementById("date").value = metodos[index].fechaExp
+    document.getElementById("cvv").value = metodos[index].cvv
+}
+
+metodos();
