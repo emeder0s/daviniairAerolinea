@@ -12,6 +12,7 @@ function getCompra(reserva,usuario){
     var fechaReserva = new Date().toISOString().split("T")[0];
     reserva.vuelo.asientosLibres -= reserva.pasajeros.length;
     var compra = new Compra(numReserva, fechaReserva,usuario.email, reserva.pasajeros, reserva.vuelo, totalPagado);
+    localStorage.setItem("compraActual",JSON.stringify(compra))
     return compra;
 }
 
@@ -51,7 +52,6 @@ function confirmarPago() {
     var numTarjeta = document.getElementById('cardnumber').value;
     var fechaEx = document.getElementById('date').value;
     var cvv = document.getElementById('cvv').value;
-    console.log(validacionNombreoApellidos(nombre,"nombre")," " ,validacionTarjeta(numTarjeta)," ",validacionFechaExp(fechaEx)," ",validacionCVV(cvv))
     if (validacionNombreoApellidos(nombre,"nombre") && validacionTarjeta(numTarjeta)  && validacionFechaExp(fechaEx)  && validacionCVV(cvv)) {
         var reserva = new Reserva();
         var reservaJson = JSON.parse(localStorage.getItem('reservaActual'));

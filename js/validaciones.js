@@ -5,7 +5,9 @@ function validacionEmail(email){
     var  regExp    = new RegExp(expr); 
     var validation = regExp.test(email);
     if (!validation){
-        document.getElementById("emailHelp").style.display="";
+        if(document.getElementById("emailHelp")){
+            document.getElementById("emailHelp").style.display="";
+        }
     }
 
     return validation;
@@ -34,7 +36,9 @@ function validacionDni(dni) {
 
         if (numero > "99999999" || letra != conjunto) {
             validation = false;
-           document.getElementById("dniHelp").style.display="";
+            if(document.getElementById("dniHelp")){
+                document.getElementById("dniHelp").style.display="";
+            }
         }
     }else{
         var validation = false;
@@ -69,7 +73,6 @@ function esLetra(letra){
 function validacionNombreoApellidos(nombre,input){
     nombre = nombre.replaceAll(" ", "");
     nombre = nombre.toLowerCase();
-    console.log(nombre);
     var i = 0;
     var validation = true;
     if (nombre.length>0){

@@ -12,6 +12,9 @@
     <nav></nav>
     <div id="contenido">
         <div class="pasajeros">
+            <div id="mensaje-continuar" class="alert alert-danger" role="alert" style="display:none">
+                Para continuar debe haber iniciado sesión y tener los campos de TODOS los pasajeros rellenos. Además los datos deben ser válidos.
+            </div>
             <div id="resgistro-reserva">
                 <h3>Información de pasajeros</h3>
                 <p>Accede con tu cuenta Daviniair y acumula Davinity points con los que podrás disfrutar de descuentos en tus próximos viajes.</p>
@@ -29,9 +32,6 @@
                         <input type="password" class="form-control" id="password-input" aria-describedby="passwordHelp" placeholder="Contraseña">
                     </div>
                     <button type="button" class="btn btn-primary" onclick="iniciarSesionYAutoCommpleta()">Iniciar Sesion</button>
-                </div>
-                <div id="mensaje-continuar" class="alert alert-danger" role="alert" style="display:none">
-                    Para continuar debe haber iniciado sesión y tener los campos de TODOS los pasajeros rellenos
                 </div>
             </div>
             <div id="no-compra-alert" class="alert alert-warning" role="alert" style="display:none">
@@ -124,6 +124,7 @@
     <script src="js/registro.js"></script>
     <script src="js/vuelo.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/validaciones.js"></script>
     <script src="js/reservaPage.js"></script>
     <script src="js/reserva.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

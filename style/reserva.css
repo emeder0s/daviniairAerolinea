@@ -32,29 +32,6 @@ div.busqueda2 p{
     margin-top: 25px;
 }
 
-/* #continuar {
-    font-family: system-ui;
-    font-size: large;
-    color: #2e2e5c;
-    font-weight: 500;
-    padding: 7px;
-    background-color: aliceblue;
-    border: 0.5px solid white;
-    box-shadow: 1px 1px 6px black;
-}
-
-#continuar:hover {
-    background-color: #4e4e79;
-    color: aliceblue;
-} */
-/* 
-#precioTotal {
-    font-family: system-ui;
-    font-size: large;
-    color: white;
-    font-weight: 500;
-} */
-
 #precioBoton {
     display: flex;
     justify-content: space-around;
@@ -130,18 +107,6 @@ div.busqueda2 p{
 
 #resumen-reserva{
     padding: 20px;
-    border: 1px solid grey;
+    border-left: 2px solid white;
+    height: 100vh;
 }
-
-
-
-
-
-
-/* {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 38% 62%;
-    grid-template-rows: 230px;
-    margin: 0.6%;
-} */

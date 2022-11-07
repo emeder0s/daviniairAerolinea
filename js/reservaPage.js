@@ -56,25 +56,25 @@ function creaDiv(i) {
     div3.setAttribute('id', `pasajero${i}`);
 
     var nombre = document.createElement('input');
-    nombre.setAttribute('class', 'nombre-reserva');
+    nombre.setAttribute('class', 'nombre-reserva form-control form-control-sm');
     nombre.setAttribute('placeholder', 'Nombre');
     nombre.setAttribute('required', 'required');
     div3.appendChild(nombre);
 
     var apellidos = document.createElement('input');
-    apellidos.setAttribute('class', 'apellidos-reserva');
+    apellidos.setAttribute('class', 'apellidos-reserva form-control form-control-sm');
     apellidos.setAttribute('required', 'required');
     apellidos.setAttribute('placeholder', 'Apellidos');
     div3.appendChild(apellidos);
 
     var email = document.createElement('input');
-    email.setAttribute('class', 'email-reserva');
+    email.setAttribute('class', 'email-reserva form-control form-control-sm');
     email.setAttribute('required', 'required');
     email.setAttribute('placeholder', 'Email');
     div3.appendChild(email);
 
     var dni = document.createElement('input');
-    dni.setAttribute('class', 'dni-reserva');
+    dni.setAttribute('class', 'dni-reserva form-control form-control-sm');
     dni.setAttribute('required', 'required');
     dni.setAttribute('placeholder', 'DNI');
     div3.appendChild(dni);
@@ -111,29 +111,34 @@ function continuarApago() {
     let datosPasajeros = document.getElementsByClassName('datos-pasajero');
     let pasajeros = [];
     i = 0;
-    var nombre = datosPasajeros[0].getElementsByTagName('input')[0].value;
-    var apellidos = datosPasajeros[0].getElementsByTagName('input')[1].value;
-    var dni = datosPasajeros[0].getElementsByTagName('input')[2].value;
-    var nombre, apellidos, dni;
+    // var nombre = datosPasajeros[0].getElementsByTagName('input')[0].value;
+    // var apellidos = datosPasajeros[0].getElementsByTagName('input')[1].value;
+    // var email = datosPasajeros[0].getElementsByTagName('input')[2].value;
+    // var dni = datosPasajeros[0].getElementsByTagName('input')[3].value;
+    // var nombre, apellidos, email, dni;
+    var todoOK = true;
     do {
         nombre = datosPasajeros[i].getElementsByTagName('input')[0].value;
         apellidos = datosPasajeros[i].getElementsByTagName('input')[1].value;
-        dni = datosPasajeros[i].getElementsByTagName('input')[2].value;
+        email = datosPasajeros[i].getElementsByTagName('input')[2].value;
+        dni = datosPasajeros[i].getElementsByTagName('input')[3].value;
         pasajeros.push({
             nombre: nombre,
             apellidos: apellidos,
             dni: dni
         });
         i++;
-    }while(nombre && apellidos && dni && i < datosPasajeros.length)
-
-    if (nombre && apellidos && dni) {
+        todoOK = validacionNombreoApellidos(nombre,"nombre") && validacionNombreoApellidos(apellidos,"apellidos") && validacionEmail(email) && validacionDni(dni);
+    }while( todoOK && i < datosPasajeros.length)
+    console.log(todoOK)
+    if (todoOK) {
         let reserva = new Reserva();
         reserva = Object.assign(reserva, JSON.parse(localStorage.getItem('reservaActual')));
         reserva.setPasajeros(pasajeros);
         localStorage.setItem('reservaActual', JSON.stringify(reserva));
-        window.location = 'pago.html';
+        //window.location = 'pago.html';
     } else {
+        console.log("aquis")
         document.getElementById("mensaje-continuar").style.display="";
     }
 }
