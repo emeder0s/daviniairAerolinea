@@ -210,8 +210,10 @@ function modificarVuelos(vuelo){
 }
 
 function modificarCompras(compra){
-    console.log(compra)
-
+    var compras = JSON.parse(localStorage.getItem("compras"));
+    var posicion = compras.findIndex(element=> element.numReserva == compra.numReserva);
+    compras[posicion].vuelo.avion = compra.vuelo.avion;
+    localStorage.setItem("compras",JSON.stringify(compras));
 }
 
 //Pone a false los asientos que haya seleccionado el usuario al hacer el checkin
