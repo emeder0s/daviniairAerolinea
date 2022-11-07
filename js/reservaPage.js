@@ -19,6 +19,7 @@
     }
 })();
 
+//Comprueba si el usuario no ha comprado 10 billetes de ese vuelo
 function comprobarSicompra(usuario){
     var compras = JSON.parse(localStorage.getItem("compras"));
     var reservaActual = JSON.parse(localStorage.getItem("reservaActual"));
@@ -34,6 +35,7 @@ function comprobarSicompra(usuario){
     return totalPasajeros <= 10;
 }
 
+//Genera los divs para rellenar los datos de los pasajeros
 function creaDiv(i) {
     var div1 = document.createElement('div');
     var div2 = document.createElement('div');
@@ -88,7 +90,7 @@ function creaDiv(i) {
     div3.appendChild(label);
 }
 
-
+//Muestra el precio total 
 function pintaPrecioTotal() {
     var vuelo = JSON.parse(localStorage.getItem('vueloSeleccionado'));
     var pasajeros = `<div>${vuelo.origen}</div`;
@@ -107,15 +109,13 @@ function pintaPrecioTotal() {
     document.getElementById('precioTotal').appendChild(document.createTextNode('Precio total: ' + precioTotal + '€'));
 }
 
+//Si las validaciones son correctas nos redirige al pago
 function continuarApago() {
     let datosPasajeros = document.getElementsByClassName('datos-pasajero');
+    document.getElementById("mensaje-continuar").style.display="none";
+    console.log(datosPasajeros)
     let pasajeros = [];
     i = 0;
-    // var nombre = datosPasajeros[0].getElementsByTagName('input')[0].value;
-    // var apellidos = datosPasajeros[0].getElementsByTagName('input')[1].value;
-    // var email = datosPasajeros[0].getElementsByTagName('input')[2].value;
-    // var dni = datosPasajeros[0].getElementsByTagName('input')[3].value;
-    // var nombre, apellidos, email, dni;
     var todoOK = true;
     do {
         nombre = datosPasajeros[i].getElementsByTagName('input')[0].value;
@@ -130,15 +130,13 @@ function continuarApago() {
         i++;
         todoOK = validacionNombreoApellidos(nombre,"nombre") && validacionNombreoApellidos(apellidos,"apellidos") && validacionEmail(email) && validacionDni(dni);
     }while( todoOK && i < datosPasajeros.length)
-    console.log(todoOK)
     if (todoOK) {
         let reserva = new Reserva();
         reserva = Object.assign(reserva, JSON.parse(localStorage.getItem('reservaActual')));
         reserva.setPasajeros(pasajeros);
         localStorage.setItem('reservaActual', JSON.stringify(reserva));
-        //window.location = 'pago.html';
+        window.location = 'pago.html';
     } else {
-        console.log("aquis")
         document.getElementById("mensaje-continuar").style.display="";
     }
 }

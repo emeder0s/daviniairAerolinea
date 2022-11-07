@@ -91,16 +91,20 @@ function pintarMetodoPago(metodos){
     var text = document.createTextNode("Selecciona una tarjeta:");
     var p = document.createElement("p");
     p.appendChild(text);
-    div.appendChild(p);
-    metodos.forEach((metodo,index) => {
-        var tarjeta = document.createTextNode(sacarTarjeta(metodo.numTarjeta));
-        var container = document.createElement("div");
-        container.setAttribute("class","alert alert-primary metodo-pago");
-        container.setAttribute("role","alert");
-        container.setAttribute("onclick",`rellenarMetodo(${index})`);
-        container.appendChild(tarjeta);
-        div.appendChild(container);
-    });
+    console.log(metodos);
+    if (metodos.length!=0){
+        div.appendChild(p);
+        metodos.forEach((metodo,index) => {
+            var tarjeta = document.createTextNode(sacarTarjeta(metodo.numTarjeta));
+            var container = document.createElement("div");
+            container.setAttribute("class","alert alert-primary metodo-pago");
+            container.setAttribute("role","alert");
+            container.setAttribute("onclick",`rellenarMetodo(${index})`);
+            container.appendChild(tarjeta);
+            div.appendChild(container);
+        });
+    }
+    
 }
 
 //Pinta el precio total del pago
@@ -111,6 +115,7 @@ function metodos(){
         var metodos = JSON.parse(localStorage.getItem("metodosPago"));
         metodos = buscarMetodos(metodos,usuario);
         pintarMetodoPago(metodos);
+        console.log("hola")
     }
 };
 

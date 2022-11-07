@@ -5,6 +5,7 @@ vuelo: {id: 41, origen: "Madrid", destino: "Edimburgo", fecha: "2022-10-26", hor
 
 (function escribeResumen() {
     var reserva = JSON.parse(localStorage.getItem('reservaActual'));
+    resumenNumReserva();
     resumenPasajeros(reserva.pasajeros);
     resumenVuelo(reserva.vuelo);
     precioTotal(reserva.pasajeros.length, reserva.vuelo.precio);
@@ -14,9 +15,9 @@ function resumenPasajeros(pasajeros) {
     var div = document.getElementsByClassName('resumenpasajeros')[0];
     for(let i = 0; i < pasajeros.length; i++) {
         var p = document.createElement('p');
-        p.appendChild(document.createTextNode(`PASAJERO: ${i+1}`));
+        p.appendChild(document.createTextNode(`PASAJERO ${i+1}`));
         var p2 = document.createElement('p');
-        p2.appendChild(document.createTextNode(`Nombre: ${pasajeros[i].nombre} ${pasajeros[i].apellidos} DNI: ${pasajeros[i].dni}`));
+        p2.appendChild(document.createTextNode(`Nombre: ${pasajeros[i].nombre} ${pasajeros[i].apellidos} - DNI: ${pasajeros[i].dni}`));
         div.appendChild(p);
         div.appendChild(p2);
     }

@@ -97,6 +97,7 @@ function navMenu(nav,sesion){
 
 //Actualiza los campos del nav una vez se ha iniciado sesión o el usuario se ha registrado (después de registrarse tb se inicia sesión)
 function actualizarNav(){
+    console.log("actualizaNav");
     var nav = document.getElementById("navigation-nav");
     nav.innerHTML = "";
     navMenu(nav,JSON.parse(localStorage.getItem("sesion")));

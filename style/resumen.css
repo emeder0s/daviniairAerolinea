@@ -63,9 +63,9 @@
 
 .resumenpasajeros{
     width: 700px;
-    text-align: center;
     border: 1px solid grey;
-    background-color: white;
+    background-color: white;    
+    padding: 10px;
 }
 
 .resumenvuelo{
